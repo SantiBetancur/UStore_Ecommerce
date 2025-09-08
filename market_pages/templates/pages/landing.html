@@ -1,0 +1,40 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block title %} {{ page_title }}{% endblock %}
+
+{% block content %}
+
+<!-- Categorias -->
+
+<div class="categories-container">
+
+    <div class="sub-header">
+        <h1>Encuentra productos y servicios de emprendedores Eafitenses</h1>
+    </div>
+
+    <nav class="categories-nav">
+        <button>Servicios Académicos</button>
+        <button>Productos electrónicos</button>
+        <button>Productos de consumo</button>
+        <button>Ropa y accesorios</button>
+    </nav>
+</div>
+
+<!-- Productos -->
+ <div class="products-grid">
+    <h2>Productos y servicios destacados</h2>
+    {% for product in products %}
+    <div class="product-card">
+        <h3 class="product-tittle">{{ product.name }}</h3>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        
+        <p>{{ product.category }}</p>
+        <p>{{ product.description }}</p>
+        <p>Precio: ${{ product.price }}</p>
+    </div>
+    {% endfor %}
+ </div>
+
+{% endblock %}
+

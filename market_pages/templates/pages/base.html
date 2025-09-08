@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UStore - Marketplace{% endblock %}</title>
+    <meta name="description" content="{% block description %}Your one-stop marketplace for all your needs{% endblock %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'images/UStore_logo.png' %}" alt="UStore Logo">
+                </a>
+            </div>
+            <!-- Search Bar -->
+            <div class="search-container">
+                <form class="search-form" method="GET" action="#">
+                    <input type="text" name="q" placeholder="Search products, categories..." class="search-input">
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </div>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <a href="#" class="cart-link">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="login-link">Login</a>
+                <a href="#" class="register-link">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-navigation">
+    
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+  
+
+        <!-- Page Content Block -->
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <h3>UStore</h3>
+                    <p>El espacio perfecto para conocer y apoyar el trabajo Eafitense</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Accesos Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Acerca de nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Centro de ayuda</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Servicio al Cliente</h3>
+                   
+                </div>
+
+                <!-- Seller Info -->
+                <div class="footer-section">
+                    <h3>Para Vendedores</h3>
+                   
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 UStore. Todos los derechos reservados.</p>
+               
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
