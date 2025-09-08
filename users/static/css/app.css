@@ -1,0 +1,23 @@
+.form-left-container {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.form-img {
+    height: 70%;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+h3{
+    color: #24346c;
+}
+
+input{
+    width: 60%;
+}
