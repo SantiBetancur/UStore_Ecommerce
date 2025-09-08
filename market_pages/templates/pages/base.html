@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}UStore - Marketplace{% endblock %}</title>
     <meta name="description" content="{% block description %}Your one-stop marketplace for all your needs{% endblock %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 </head>
 <body>
     <!-- Header -->
@@ -14,25 +16,26 @@
             <!-- Logo -->
             <div class="logo">
                 <a href="#">
-                    <img src="{% static 'images/UStore_logo.png' %}" alt="UStore Logo">
+                    <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo">
                 </a>
             </div>
             <!-- Search Bar -->
             <div class="search-container">
                 <form class="search-form" method="GET" action="#">
+                    <span class="orange_square"></span>
                     <input type="text" name="q" placeholder="Search products, categories..." class="search-input">
-                    <button type="submit" class="search-button">Search</button>
+                    <button type="submit" class="search-button">Buscar</button>
                 </form>
             </div>
 
             <!-- User Actions -->
             <div class="user-actions">
                 <a href="#" class="cart-link">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count">0</span>
+                    Carrito
+                    <span class="cart-count" style="color: #e4783a;">0</span>
                 </a>
-                <a href="#" class="login-link">Login</a>
-                <a href="#" class="register-link">Sign Up</a>
+                <a href="#" class="login-link">Ingresar</a>
+                <a href="#" class="register-link">Registrarse</a>
             </div>
         </div>
     </header>
