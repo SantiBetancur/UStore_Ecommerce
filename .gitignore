@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.env
+
+# Archivos temporales
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.bak
+*.tmp
