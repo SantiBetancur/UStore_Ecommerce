@@ -1,34 +1,30 @@
-{% extends 'layouts/logInContainer.html' %}
-
-{% block form %}
+{% extends 'pages/base.html' %}
 {% load static %}
-    <form method="post" action="{{ request.path }}">
-        {% csrf_token %}
-        <h3>{{ title }}</h3>
-        {% if select %}
-            <div class="mb-3">
-                <label for="{{ select.name }}" class="form-label">Escoge tu rol</label>
-                <select class="form-select" id="{{ select.name }}" name="{{ select.name }}">
-                    {% for option in select.options %}
-                        <option value="{{ option.value }}">{{ option.text }}</option>
-                    {% endfor %}
-                </select>
+
+
+{% block content %}
+
+    <div class="container-fluid vh-100 d-flex p-0">
+    
+        <!-- Columna izquierda (70%) -->
+        <div class="col-12 col-md-7 d-flex justify-content-center align-items-center bg-white form-left-container">
+            <img src="{% static 'images/marketImg.png' %}" alt="form-img" class="form-img">
+        </div>
+
+        <!-- Columna derecha (30%) -->
+        <div class="col-12 col-md-5 d-flex justify-content-center align-items-center flex-column bg-light form-right-container">
+            <div class="d-flex justify-content-end  align-items-center" style="margin-bottom: 20px;">
+                <a href="{% url 'landing' %}" class="btn btn-primary d-flex align-items-center" style="background-color: #ffff; color: black; border:none; font-weight: bold;">
+                  <i class="bi bi-arrow-left me-2"><img src="{% static 'icons/arrow-left-circle-fill.svg' %}" alt="arrow-left" width="20"></i> Volver
+                </a>
             </div>
-        {% endif %}
-        {% for field in form_fields %}
-            <div class="mb-3">
-                <label for="{{ field.id }}" class="form-label">{{ field.label }}</label>
-                <input type="{{ field.type }}" class="form-control" id="{{ field.id }}" name="{{ field.id }}" placeholder="{{ field.placeholder }}" required>
+            <div class="d-flex justify-content-center align-items-center 0" style="margin-bottom: 50px;">
+                <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo" width="200">
             </div>
-        {% endfor %}
-        {% if errors %}
-        <ul style="color: red;">
-            {% for error in errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <p>{{ p_text }} <a href="{% url url_redirect %}">{{ a_text }}</a></p>
-        <button type="submit" class="btn btn-primary" style="background-color: #24346c;">{{ btn_text }}</button>
-    </form>
+            {% block form %}
+            <!-- Aquí va tu formulario -->
+            {% endblock %}
+            
+        </div>
+    </div>
 {% endblock %}

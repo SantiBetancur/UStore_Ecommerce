@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ page_title }}{% endblock %}
+
+{% block content %}
+
+<!-- Categorias -->
+
+<div class="categories-container">
+
+    <div class="sub-header">
+        <h1>Encuentra productos y servicios de emprendedores <span style="color: #24346c; font-weight:bold">Eafitenses</span></h1>
+    </div>
+    <nav class="categories-nav">
+        <p><span class="orange_square"></span>Categorías principales</p>
+        <button>Servicios Académicos</button>
+        <button>Productos electrónicos</button>
+        <button>Productos de consumo</button>
+        <button>Ropa y accesorios</button>
+    </nav>
+</div>
+
+<!-- Productos -->
+ <div class="sub-header">
+    <h2></span>Destacados</h2>
+ </div>
+
+ <div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <h3 class="product-tittle"><span class="orange_square"></span>{{ product.name }}</h3>
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        
+        <p>{{ product.category }}</p>
+        <p>{{ product.description }}</p>
+        <p class="product-price" style="color: #e4783a">${{ product.price }}</p>
+    </div>
+    {% endfor %}
+ </div>
+
+{% endblock %}
+

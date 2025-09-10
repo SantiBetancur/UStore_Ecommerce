@@ -1,0 +1,123 @@
+.categories-container {
+    width: 100%;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.categories-nav {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 2px solid #e4783a;
+}
+
+.categories-nav p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e4783a;
+    margin: 0;
+}
+
+.categories-nav button {
+    padding:7px;
+    border-radius: 7px;
+    background-color: #e4783a00;
+    color: #717171;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.categories-nav button:hover {
+    background-color: #e4783a;
+    color: #ffffff;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+
+.sub-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.sub-header h1 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #717171;
+}
+.sub-header h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #717171;
+}
+
+.orange_square {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    background-color: #e4783a;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.products-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    justify-items: center;
+    align-items: start;
+}
+
+.product-card {
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #24346c;
+    padding: 10px 0 10px 0;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.product-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff; 
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #fff;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e4783a;
+}
