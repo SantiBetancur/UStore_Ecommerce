@@ -2,7 +2,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.hashers import make_password
 from django.db import models
-from .storeModel import Store
 
 
 class UserManager(BaseUserManager):
@@ -35,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     cellphone = models.CharField(max_length=15, blank=True, null=True)
     has_store = models.BooleanField(default=False)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE, null=True, blank=True)
+    store = models.ForeignKey("market_pages.Store", on_delete=models.CASCADE, null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
