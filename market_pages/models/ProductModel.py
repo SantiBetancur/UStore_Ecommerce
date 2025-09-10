@@ -1,5 +1,5 @@
 from django.db import models
-
+from users.models import Store
 # Create your models here.
 
 class Product(models.Model):
@@ -11,6 +11,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="products", null=True, blank=True)
 
     def __str__(self):
         return self.name

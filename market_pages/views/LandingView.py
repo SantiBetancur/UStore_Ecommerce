@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 import logging
 from django.views.generic import TemplateView
-from .models import Product
+from ..models import Product
 
 # Create your views here.
 
