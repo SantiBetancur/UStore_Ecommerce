@@ -40,4 +40,3 @@ class LandingView(TemplateView):
             'page_title': 'UStore - Marketplace',
         }
         return render(request, self.template_name, context)
-
