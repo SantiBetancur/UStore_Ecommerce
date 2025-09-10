@@ -47,6 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 0 20px 0;
 }
 
 
@@ -71,53 +72,92 @@
     vertical-align: middle;
 }
 
-.products-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    justify-items: center;
-    align-items: start;
-}
-
 .product-card {
-    width: 400px;
-    height: 500px;
+    width: 100%;
+    height: 550px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: #24346c;
-    padding: 10px 0 10px 0;
-    transition: 0.3s;
+    background-color: #ffffff;
+    padding: 0;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
 }
 
 .product-card:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.product-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff; 
+    font-size: 22px;
+    font-weight: 600;
+    color: #24346c;
+    margin: 0 0 10px 0;
+    text-align: center;
+    line-height: 1.3;
 }
 
 .product-card img {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
+    margin: 0;
+    border-radius: 15px 15px 0 0;
 }
 
-.product-card p {
+.product-category {
+    font-size: 14px;
+    color: #e4783a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.product-description {
     font-size: 16px;
-    color: #fff;
+    color: #24346c;
+    margin: 8px 0;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
 }
 
 .product-price {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
     color: #e4783a;
+    margin: 0;
+    text-align: left;
+}
+
+.product-date {
+    font-size: 14px;
+    color: #24346c;
+    margin: 0;
+    text-align: right;
+    opacity: 0.6;
 }

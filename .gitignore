@@ -1,6 +1,9 @@
+# Cache de Python
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 *.env
 
@@ -13,3 +16,5 @@ __pycache__/
 *.swo
 *.bak
 *.tmp
+
+db.sqlite3
