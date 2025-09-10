@@ -72,7 +72,7 @@ class SingInView(View):
                     has_store=role,
                 )
 
-                return redirect("home") 
+                return redirect("landing") 
         except Exception as e:
             print(e)
             data_get_render_template["errors"] = ["El correo ya está en uso."]

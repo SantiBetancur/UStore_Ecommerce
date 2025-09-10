@@ -28,6 +28,7 @@ class LoginView(View):
     template_name = 'pages/forms.html'
 
     def get(self, request):
+        data_get_render_template.pop("errors", None)
         return render(request, self.template_name, data_get_render_template)
     
     def post(self, request):
@@ -36,14 +37,11 @@ class LoginView(View):
         email = request.POST.get("user_email")
         password = request.POST.get("user_password")
 
-        # Autenticar usuario
         user = authenticate(request, username=email, password=password)
 
         if user is not None:
-            # Iniciar sesión
             login(request, user)
-            return redirect("home")  # 👈 pon el nombre de tu ruta al home
+            return redirect("landing")  
         else:
-            # Si falla la autenticación
             data_get_render_template["errors"] = ["Correo o contraseña incorrectos."]
             return render(request, self.template_name, data_get_render_template)
