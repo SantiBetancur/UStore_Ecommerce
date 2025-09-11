@@ -4,9 +4,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyc
-
 *.env
-
 # Archivos temporales
 *.pot
 *.pyc
