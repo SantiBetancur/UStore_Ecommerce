@@ -11,7 +11,7 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo">
-                <a href="#">
+                <a href="">
                     <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo">
                 </a>
             </div>
@@ -32,7 +32,7 @@
             <!-- User Actions -->
             {% if not user.is_authenticated %}
             <div class="user-actions">
-                <a href="#" class="cart-link">
+                <a href="{% url 'add_to_cart' product.id %}" class="cart-link">
                     <i class="bi bi-cart"></i>
                     <span class="cart-count" style="color: #e4783a;">0</span>
                 </a>
@@ -42,7 +42,7 @@
             {% endif %}
             {% if user.is_authenticated %}
             <div class="user-actions">
-                <a href="#" class="cart-link">
+                <a href="{% url 'add_to_cart' product.id %" class="cart-link">
                     <i class="bi bi-cart"></i>
                     <span class="cart-count" style="color: #e4783a;">0</span>
                 </a>
@@ -118,4 +118,3 @@
     </main>
 
 {% endblock %}
-
