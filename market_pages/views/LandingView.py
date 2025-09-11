@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 import logging
@@ -18,15 +18,20 @@ class LandingView(TemplateView):
         username = (request.user.name[:20] + '...') if hasattr(request.user, 'name') and len(request.user.name) > 20 else getattr(request.user, 'name', '')
         request.session['username'] = username
         return super().dispatch(request, *args, **kwargs)
+
     def get(self, request):
         # Shorten the username to 20 characters if it's longer
         username = request.session.get('username', '') if request.user.is_authenticated else ''
+        storename = request.session.get('short_storename', '') if request.session.get('short_storename', '') else "Mi tienda"
+        cart_count = request.session.get('cart_count', 0)
         context = {
             'products': Product.objects.all(),
-            'cart': Cart.objects.get(buyer=request.user) if request.user.is_authenticated else None,
+            'cart': Cart.objects.get_or_create(buyer=request.user)[0] if request.user.is_authenticated else None,
             'default_image': 'static/images/default.png',
             'page_title': 'UStore - Marketplace',
             'username': username,
-            'user': request.user
+            'user': request.user,
+            'storename': storename,
+            'cart_count': cart_count,
         }
         return render(request, self.template_name, context)

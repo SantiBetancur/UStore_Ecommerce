@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}UStore - Marketplace{% endblock %}</title>
     <meta name="description" content="{% block description %}Your one-stop marketplace for all your needs{% endblock %}">
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -14,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="{% static 'js/search.js' %}"></script>
     
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
         <!-- Header -->
@@ -62,16 +64,16 @@
                 <div class="user-actions">
                     <a href="{% url 'view_cart' %}" class="cart-link">
                         <i class="bi bi-cart"></i>
-                        <span class="cart-count" style="color: #e4783a;">{{ cart.items.count }}</span>
+                        <span class="cart-count" style="color: #e4783a;">{{ cart_count }}</span>
                     </a>
                     {% if not user.has_store%}
-                    <a href="#" class="login-link btn btn-primary" style="background-color: #24346c; border: none; color: white;">
+                    <a href="{% url 'create_store' %}" class="login-link btn btn-primary" style="background-color: #24346c; border: none; color: white;">
                         <i class="bi bi-shop"></i> Vende con nosotros
                     </a>
                     {% endif %}
                     {% if user.has_store%}
-                    <a href="#" class="login-link">
-                        <i class="bi bi-shop"></i> Mi tienda
+                    <a href="{% url 'admin_store' %}" class="login-link">
+                        <i class="bi bi-shop"></i> {{storename}}
                     </a>
                     {% endif %}
     
@@ -90,52 +92,174 @@
     {% endblock %}
     </main>
     <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-content">
+    <footer class="footer bg-light border-top">
+        <div class="container py-5">
+            <!-- Main Footer Content -->
+            <div class="row g-4">
                 <!-- Company Info -->
-                <div class="footer-section">
-                    <h3>UStore</h3>
-                    <p>El espacio perfecto para conocer y apoyar el trabajo Eafitense</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Twitter</a>
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">LinkedIn</a>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo" class="footer-logo me-2">
+                   
+                        </div>
+                        <p class="text-muted mb-4">
+                            El espacio perfecto para conocer y apoyar el trabajo de emprendedores Eafitenses. 
+                            Conectamos talento local con la comunidad universitaria.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link me-3" title="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link me-3" title="Twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link me-3" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" title="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
-                <div class="footer-section">
-                    <h3>Accesos Rápidos</h3>
-                    <ul>
-                        <li><a href="#">Acerca de nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Centro de ayuda</a></li>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                    </ul>
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-section">
+                        <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>Accesos Rápidos
+                        </h6>
+                        <ul class="footer-links list-unstyled">
+                            <li class="mb-2">
+                                <a href="{% url 'landing' %}" class="footer-link">
+                                    <i class="bi bi-house me-2"></i> Inicio
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-info-circle me-2"></i> de nosotros
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-envelope me-2"></i> Contacto
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-question-circle me-2"></i> Centro de ayuda
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Customer Service -->
-                <div class="footer-section">
-                    <h3>Servicio al Cliente</h3>
-                   
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-section">
+                        <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>Servicio al Cliente
+                        </h6>
+                        <ul class="footer-links list-unstyled">
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-chat-dots me-2"></i>Soporte en vivo
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-file-text me-2"></i>Política de devoluciones
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-shield-check me-2"></i>Garantías
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-truck me-2"></i>Entregas en el campus
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Seller Info -->
-                <div class="footer-section">
-                    <h3>Para Vendedores</h3>
-                   
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-section">
+                        <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>Para Vendedores
+                        </h6>
+                        <ul class="footer-links list-unstyled">
+                            <li class="mb-2">
+                                <a href="{% url 'create_store' %}" class="footer-link">
+                                    <i class="bi bi-plus-circle me-2"></i>Crear tienda
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-graph-up me-2"></i>Vender productos
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-percent me-2"></i>Comisiones
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="footer-link">
+                                    <i class="bi bi-book me-2"></i>Guía del vendedor
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-section">
+                        <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>Contacto
+                        </h6>
+                        <div class="contact-info">
+                            <div class="contact-item mb-3">
+                                <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                                <small class="text-muted">Universidad EAFIT<br>Medellín, Colombia</small>
+                            </div>
+                            <div class="contact-item mb-3">
+                                <i class="bi bi-envelope-fill text-primary me-2"></i>
+                                <small class="text-muted">info@ustore.co</small>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-telephone-fill text-primary me-2"></i>
+                                <small class="text-muted">+57 (4) 261-9500</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 UStore. Todos los derechos reservados.</p>
-               
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-muted">
+                        &copy; 2025 UStore. Todos los derechos reservados.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-legal text-md-end">
+                        <a href="#" class="text-muted me-3 small">Términos de servicio</a>
+                        <a href="#" class="text-muted me-3 small">Política de privacidad</a>
+                        <a href="#" class="text-muted small">Cookies</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
 
 </body>
 </html>

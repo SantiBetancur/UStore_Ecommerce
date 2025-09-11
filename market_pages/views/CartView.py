@@ -12,11 +12,15 @@ def view_cart(request):
     cart, created = Cart.objects.get_or_create(buyer=request.user)
     # Bring the username from the session
     username = request.session.get('username', '') if request.user.is_authenticated else ''
+    storename = request.session.get('short_storename', '') if request.session.get('short_storename', '') else "Mi tienda"
+    cart_count = request.session.get('cart_count', 0)
     context = {
         'cart': cart,
+        'cart_count': cart_count,
         'page_title': 'Mi Carrito - UStore',
         'username': username,
         'user': request.user,
+        'storename': storename,
     }
     return render(request, template_name, context)
 
@@ -31,6 +35,8 @@ def add_to_cart(request, product_id):
     if not created:
         item.quantity += 1
         item.save()
+    cart_count = cart.items.count()
+    request.session['cart_count'] = cart_count
     return redirect("view_cart")
 
 #@login_required

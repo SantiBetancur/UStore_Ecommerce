@@ -60,28 +60,127 @@ main {
 
 }
 
-footer {
-    margin-top: 100px;
-    background-color: #24346c;
-    padding: 10px;
+.footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 2px solid #24346c;
 }
 
-.footer-container {
-    width: 100%;
+.footer-logo {
+    width: 100px;
+    object-fit: contain;
+}
+
+.footer-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #24346c;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    margin: 0;
+}
+
+.footer-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.footer-content {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffffff;
+.footer-link:hover {
+    color: #e4783a;
+    transform: translateX(5px);
 }
 
-.footer-bottom {
-    color: #ffffff;
+.social-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #24346c;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.social-link:hover {
+    background: #e4783a;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(36, 52, 108, 0.3);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.contact-item i {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.footer-legal a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #24346c !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0;
+    }
+    
+    .footer-brand {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-legal {
+        text-align: center !important;
+        margin-top: 1rem;
+    }
+    
+    .footer-legal a {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+    
+    .footer-title {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
 }
 
