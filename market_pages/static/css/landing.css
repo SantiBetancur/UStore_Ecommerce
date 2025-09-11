@@ -161,3 +161,40 @@
     text-align: right;
     opacity: 0.6;
 }
+
+/* Badge de fecha en esquina superior izquierda */
+.product-date-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos del footer reorganizado */
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.product-price .price-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e4783a;
+}
+
+.product-actions .btn {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+}

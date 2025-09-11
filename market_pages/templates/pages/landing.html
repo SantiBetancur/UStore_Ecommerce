@@ -3,49 +3,64 @@
 
 {% block title %} {{ page_title }}{% endblock %}
 
-{% block content %}
 
-<!-- Categorias -->
 
-<div class="categories-container">
+    {% block main %}
+    <!-- Main Content -->    
+        <div class="categories-container">
 
-    <div class="sub-header">
-        <h1>Encuentra productos y servicios de emprendedores <span style="color: #24346c; font-weight:bold">Eafitenses</span></h1>
-    </div>
-    <nav class="categories-nav">
-        <p><span class="orange_square"></span>Categorías principales</p>
-        <button>Servicios Académicos</button>
-        <button>Productos electrónicos</button>
-        <button>Productos de consumo</button>
-        <button>Ropa y accesorios</button>
-    </nav>
-</div>
-
-<!-- Productos -->
- <div class="sub-header" >
-    <h2></span>Últimas publicaciones</h2>
- </div>
-
- <div class="container-fluid px-4">
-    <div class="row g-4 justify-content-center">
-        {% for product in products %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 ">
-            <div class="product-card">
-                <img src="{{ default_image }}" alt="{{ product.name }}">
-                <div class="product-content">
-                    <h3 class="product-tittle">{{ product.name }}</h3>
-                    <p class="product-category">{{ product.category }}</p>
-                    <p class="product-description">{{ product.description }}</p>
-                    <div class="product-footer">
-                        <p class="product-price">${{ product.price|floatformat:0 }}</p>
-                        <p class="product-date">{{ product.created_at|date:"M d, Y" }}</p>
+            <div class="sub-header">
+                <h1>Encuentra productos y servicios de emprendedores <span style="color: #24346c; font-weight:bold">Eafitenses</span></h1>
+            </div>
+            <nav class="categories-nav">
+                <p><span class="orange_square"></span>Categorías principales</p>
+                <button>Servicios Académicos</button>
+                <button>Productos electrónicos</button>
+                <button>Productos de consumo</button>
+                <button>Ropa y accesorios</button>
+            </nav>
+        </div>
+        
+        <!-- Productos -->
+         <div class="sub-header" >
+            <h2></span>Últimas publicaciones</h2>
+         </div>
+        
+         <div class="container-fluid px-4">
+            <div class="row g-4 justify-content-center">
+                {% for product in products %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                    <div class="product-card position-relative" style="box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);">
+                
+                            
+                        <!-- <img src="{{ product.image.url }}" alt="{{ product.name }}"> -->
+                        <img src="{% static 'images/default.png' %}" alt="{{ product.name }}">
+                        <div class="product-content">
+                            <div class="product-date-badge " style="color:#ffffff ; font-size: 12px; font-weight:bold;">
+                                <span class="orange_square"></span>
+                                publicado {{ product.created_at|date:"M d" }}
+                            </div>
+                            <h3 class="product-tittle">{{ product.name }}</h3>
+                            <p class="product-category">{{ product.category }}</p>
+                            <p class="product-description">{{ product.description }}</p>
+                            
+                            <!-- Footer con precio y botón 50-50 -->
+                            <div class="product-footer d-flex justify-content-between align-items-center">
+                                <div class="product-price">
+                                    <span class="price-amount">${{ product.price|floatformat:0 }}</span>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-sm px-2 py-1" style="font-size: 0.75rem;">
+                                        <i class="bi bi-cart-plus"></i> Agregar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
-    </div>
- </div>
+         </div>
+        
 
 {% endblock %}
-

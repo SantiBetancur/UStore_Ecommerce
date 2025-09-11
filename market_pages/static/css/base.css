@@ -30,29 +30,12 @@ header {
     
 }
 
-.search-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #24346c;
-    border-radius: 5px;
-    width: 600px;
-    padding: 10px
-}
-
-.search-input {
-    border: none;
-    width: 80%;
-    padding: 7px 0 7px 10px;
-    border-radius: 5px;
-}
-.search-input:focus {
-    outline: none;
-    border: none;
-}
 
 .logo img {
     width: 200px;
+}
+.user-actions  {
+    margin-left: 10px;
 }
 
 .user-actions a {
@@ -62,6 +45,12 @@ header {
     font-size: 16px;
     padding: 5px;
     margin-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.user-actions a:hover {
+    color: #e4783a;
+    transform: scale(1.05);
 }
 
 main {
