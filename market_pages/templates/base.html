@@ -33,9 +33,9 @@
 
             <!-- User Actions -->
             <div class="user-actions">
-                <a href="#" class="cart-link">
+                <a href="{% url 'view_cart' %}" class="cart-link">
                     Carrito
-                    <span class="cart-count" style="color: #e4783a;">0</span>
+                    <span class="cart-count" style="color: #e4783a;">{{ cart_item_count }}</span>
                 </a>
                 <a href="/login" class="login-link">Ingresar</a>
                 <a href="/signin" class="register-link">Registrarse</a>
