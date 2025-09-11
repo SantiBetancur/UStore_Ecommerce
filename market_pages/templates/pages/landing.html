@@ -6,11 +6,11 @@
 {% block content %}
 
 <!-- Categorias -->
-
 <div class="categories-container">
-
     <div class="sub-header">
-        <h1>Encuentra productos y servicios de emprendedores <span style="color: #24346c; font-weight:bold">Eafitenses</span></h1>
+        <h1>Encuentra productos y servicios de emprendedores 
+            <span style="color: #24346c; font-weight:bold">Eafitenses</span>
+        </h1>
     </div>
     <nav class="categories-nav">
         <p><span class="orange_square"></span>Categorías principales</p>
@@ -22,14 +22,14 @@
 </div>
 
 <!-- Productos -->
- <div class="sub-header" >
-    <h2></span>Últimas publicaciones</h2>
- </div>
+<div class="sub-header">
+    <h2>Últimas publicaciones</h2>
+</div>
 
- <div class="container-fluid px-4">
+<div class="container-fluid px-4">
     <div class="row g-4 justify-content-center">
         {% for product in products %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 ">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
             <div class="product-card">
                 <img src="{{ default_image }}" alt="{{ product.name }}">
                 <div class="product-content">
@@ -40,12 +40,17 @@
                         <p class="product-price">${{ product.price|floatformat:0 }}</p>
                         <p class="product-date">{{ product.created_at|date:"M d, Y" }}</p>
                     </div>
+                    <!-- Botón añadir al carrito -->
+                    <div class="product-actions" style="margin-top:10px;">
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">
+                            Añadir al carrito
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
- </div>
+</div>
 
 {% endblock %}
-
