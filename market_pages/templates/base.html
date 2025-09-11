@@ -14,10 +14,71 @@
     <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 </head>
 <body>
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="{% url 'landing' %}">
+                        <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo">
+                    </a>
+                </div>
+                <!-- Search Bar -->
+                <div class="search-container">
+                    
+                    <form class="search-form d-flex align-items-center w-100" method="GET" action="#">
+                        <span class="orange_square"></span>
+                        <div class="input-group">
+                            <input type="text" name="q" placeholder="Search products, categories..." class="form-control bg-white border-end-0" style="box-shadow:none;">
+                            <button type="submit" class="btn btn-primary" style="background-color: #24346c; border: none;">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+    
+                <!-- User Actions -->
+                {% if not user.is_authenticated %}
+                <div class="user-actions">
+                    <a href="{% url 'view_cart' %}" class="cart-link">
+                        <i class="bi bi-cart"></i>
+                        <span class="cart-count" style="color: #e4783a;">{{ cart.items.count }}</span>
+                    </a>
+                    <a href="/login" class="login-link">Ingresar</a>
+                    <a href="/signin" class="register-link">Registrarse</a>
+                </div>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <div class="user-actions">
+                    <a href="{% url 'view_cart' %}" class="cart-link">
+                        <i class="bi bi-cart"></i>
+                        <span class="cart-count" style="color: #e4783a;">{{ cart.items.count }}</span>
+                    </a>
+                    {% if not user.has_store%}
+                    <a href="#" class="login-link btn btn-primary" style="background-color: #24346c; border: none; color: white;">
+                        <i class="bi bi-shop"></i> Vende con nosotros
+                    </a>
+                    {% endif %}
+                    {% if user.has_store%}
+                    <a href="#" class="login-link">
+                        <i class="bi bi-shop"></i> Mi tienda
+                    </a>
+                    {% endif %}
+    
+                    <a href="#" class="register-link">
+                        <i class="bi bi-person-circle"></i> {{username}}
+                    </a>
+                    <a href="/logout" class="login-link"> <i class="bi bi-box-arrow-right"></i> Salir</a>
+                </div>
+                {% endif %}
+            </div>
+        </header>
     <!-- Page Content Block -->
-    {% block content %}
+    <main>
+    {% block main %}
 
     {% endblock %}
+    </main>
     <!-- Footer -->
     <footer>
         <div class="footer-container">
