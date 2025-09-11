@@ -6,6 +6,9 @@ from market_pages.models.ProductModel import Product
 #@login_required
 def view_cart(request):
     template_name = "pages/cart.html"
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     cart, created = Cart.objects.get_or_create(buyer=request.user)
     # Bring the username from the session
     username = request.session.get('username', '') if request.user.is_authenticated else ''
