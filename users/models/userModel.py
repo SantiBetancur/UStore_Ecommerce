@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.hashers import make_password
 from django.db import models
+from market_pages.models import Store  
 
 
 class UserManager(BaseUserManager):
@@ -43,6 +44,20 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name"]
+
+    def create_store(self, name, description, logo):
+        if self.has_store:
+            raise ValueError("User already has a store.")
+        
+        store = Store.objects.create(
+            name=name,
+            description=description,
+            logo=logo if logo else None,
+        )
+        self.store = store
+        self.has_store = True
+        self.save()
+        return store
 
     def __str__(self):
         return self.email

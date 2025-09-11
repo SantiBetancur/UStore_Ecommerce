@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth import authenticate, login
 from django.views import View 
 from ..models import User
 
@@ -55,7 +56,6 @@ class SingInView(View):
         email = request.POST.get("email")
         name = request.POST.get("name")
         cellphone = request.POST.get("cellphone")
-        role = request.POST.get("role")
         password = request.POST.get("password")
 
         try:
@@ -69,8 +69,12 @@ class SingInView(View):
                     name=name,
                     password=password,
                     cellphone=cellphone,
-                    has_store=role,
+                    has_store=False,
                 )
+
+                user = authenticate(request, username=email, password=password)
+                if user is not None:
+                    login(request, user)
 
                 return redirect("landing") 
         except Exception as e:

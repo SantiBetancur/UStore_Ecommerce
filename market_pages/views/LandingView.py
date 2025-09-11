@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 import logging
@@ -23,7 +23,7 @@ class LandingView(TemplateView):
         username = request.session.get('username', '') if request.user.is_authenticated else ''
         context = {
             'products': Product.objects.all(),
-            'cart': Cart.objects.get(buyer=request.user) if request.user.is_authenticated else None,
+            'cart': Cart.objects.get_or_create(buyer=request.user)[0] if request.user.is_authenticated else None,
             'default_image': 'static/images/default.png',
             'page_title': 'UStore - Marketplace',
             'username': username,

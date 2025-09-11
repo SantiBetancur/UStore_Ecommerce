@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %} 
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">>
+{% endblock %}
+
+{% block main %}
+    <div class="container my-4">
+    
+        <div class="text-center mb-5">
+            <h1 class="text-primary mb-2">Crear Mi Tienda</h1>
+            <p class="text-muted">Configura la información básica de tu tienda en UStore EAFIT</p>
+        </div>
+    
+        <form method="POST" enctype="{{ request.path }}">
+            {% csrf_token %}
+            <div class="card store-profile-card mb-5">
+                <div class="store-header-bg-custom">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="pe-4">
+                                <!-- Nombre de la tienda -->
+                                <div class="mb-4">
+                                    <label for="store_name" class="form-label text-primary fw-bold fs-5">Nombre de la Tienda*</label>
+                                    <input type="text" class="form-control form-control-lg" id="store_name" name="store_name" 
+                                           placeholder="Ingresa el nombre de tu tienda" required style="font-size: 1.5rem; font-weight: 700;">
+                                </div>
+                                
+                                <!-- Descripción -->
+                                <div class="mb-4">
+                                    <label for="description" class="form-label fw-bold">Descripción de la Tienda*</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4"
+                                              placeholder="Describe tu tienda, productos que vendes, qué la hace especial..." 
+                                              style="font-size: 1.05rem; line-height: 1.6;"></textarea>
+                                    <div class="form-text">Máximo 500 caracteres. Esta descripción aparecerá en tu perfil público.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    <label for="logo" class="form-label fw-bold">Logo de la Tienda</label>
+                                    <input type="file" class="form-control form-control-sm" id="logo" name="logo" 
+                                           accept="image/*">
+                                    <div class="form-text">Formato recomendado: JPG, PNG. Máximo 2MB.</div>
+                                </div>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="removeLogo()">
+                                    <i class="fas fa-trash me-1"></i>Quitar Logo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Cancelar
+                </a>
+                <div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save me-2"></i>Crear Tienda
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
