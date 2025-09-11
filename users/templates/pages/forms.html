@@ -6,16 +6,6 @@
     <form method="post" action="{{ request.path }}">
         {% csrf_token %}
         <h3>{{ title }}</h3>
-        {% if select %}
-            <div class="mb-3">
-                <label for="{{ select.name }}" class="form-label">Escoge tu rol</label>
-                <select class="form-select" id="{{ select.name }}" name="{{ select.name }}">
-                    {% for option in select.options %}
-                        <option value="{{ option.value }}">{{ option.text }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        {% endif %}
         {% for field in form_fields %}
             <div class="mb-3">
                 <label for="{{ field.id }}" class="form-label">{{ field.label }}</label>

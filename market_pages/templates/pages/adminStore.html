@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %} 
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">>
+{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+    
+        <div class="card store-profile-card mb-5">
+            <div class="store-header-bg-custom">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="pe-4">
+                            <h2 class="text-primary mb-3" style="font-weight: 700;">{{ name }}</h2>
+                            <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
+                                {{ description }}
+                            </p>
+                            <div class="d-flex gap-4 text-muted">
+                                <span><i class="fas fa-star text-warning me-1"></i>4.8 (24 reseñas)</span>
+                                <span><i class="fas fa-box me-1"></i>12 productos</span>
+                                <span><i class="fas fa-clock me-1"></i>Desde 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
+                        {% if logo %}
+                        <img src="{% static 'images/default.png' %}" alt="Logo de la tienda" class="store-avatar-large">
+                        {% else %}
+                        <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="logo" class="form-label fw-bold">Logo de la Tienda</label>
+                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" 
+                                        accept="image/*">
+                                <div class="form-text">Formato recomendado: JPG, PNG. Máximo 2MB.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="background-color: #24346c;">Subir Logo</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos de la Tienda -->
+        <div class="mb-4">
+            <h3 class="section-title">Mis Productos</h3>
+        </div>
+
+        <div class="row g-4">
+            <!-- Producto 1 -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card product-card">
+                    <div class="product-image">
+                        <div class="product-logo">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="ustore-watermark">UStore EAFIT</div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title mb-2">Laptop Gaming Pro</h6>
+                        <p class="card-text small text-muted mb-3">Laptop de alta gama para gaming y trabajo profesional</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price-tag">$2,599,000</span>
+                            <button class="btn btn-custom-primary btn-sm text-white">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

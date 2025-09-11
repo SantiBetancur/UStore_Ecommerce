@@ -55,7 +55,6 @@ class SingInView(View):
         email = request.POST.get("email")
         name = request.POST.get("name")
         cellphone = request.POST.get("cellphone")
-        role = request.POST.get("role")
         password = request.POST.get("password")
 
         try:
@@ -69,7 +68,7 @@ class SingInView(View):
                     name=name,
                     password=password,
                     cellphone=cellphone,
-                    has_store=role,
+                    has_store=False,
                 )
 
                 return redirect("landing") 
