@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'market_pages.apps.MarketPagesConfig',
     'users.apps.UsersConfig',
-    'admin_pages.apps.AdminPagesConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
