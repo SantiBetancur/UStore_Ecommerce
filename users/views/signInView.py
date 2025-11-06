@@ -48,6 +48,15 @@ class SingInView(View):
 
     def get(self, request):
         data_get_render_template.pop("errors", None)
+        
+        social_data = request.session.get('social_signup_data')
+        if social_data:
+            for field in data_get_render_template['form_fields']:
+                if field['id'] == 'name':
+                    field['value'] = social_data.get('name', '')
+                elif field['id'] == 'email':
+                    field['value'] = social_data.get('email', '')
+
         return render(request, self.template_name, data_get_render_template)
 
     def post(self, request):

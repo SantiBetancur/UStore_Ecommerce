@@ -1,3 +1,6 @@
 django
 factory-boy
 pillow
+PyJWT
+django-allauth
+cryptography
