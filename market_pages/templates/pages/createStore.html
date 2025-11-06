@@ -25,6 +25,9 @@
                                     <label for="store_name" class="form-label text-primary fw-bold fs-5">Nombre de la Tienda*</label>
                                     <input type="text" class="form-control form-control-lg" id="store_name" name="store_name" 
                                            placeholder="Ingresa el nombre de tu tienda" required style="font-size: 1.5rem; font-weight: 700;">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error }}</div>
+                                    {% endif %}
                                 </div>
                                 
                                 <!-- Descripción -->

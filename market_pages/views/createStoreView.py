@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 import logging
 logger = logging.getLogger(__name__)
@@ -12,6 +12,8 @@ class CreateStore(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect("login")
+        error_message = request.GET.get('error')
+        
         username = request.session.get('username', '')
         storename = request.session.get('short_storename', '') if request.session.get('short_storename', '') else "Mi tienda"
         cart_count = request.session.get('cart_count', 0)
@@ -20,6 +22,7 @@ class CreateStore(LoginRequiredMixin, TemplateView):
             'username': username,
             'storename': storename,
             'cart_count': cart_count,
+            'error': error_message,
         }
         return render(request, self.template_name, context)
 
@@ -28,7 +31,13 @@ class CreateStore(LoginRequiredMixin, TemplateView):
         description = request.POST.get("description")
         logo = request.FILES.get("logo") 
         logo=logo if logo else None
-        request.user.create_store(name, description, logo)
+        store = request.user.create_store(name, description, logo)
+        try: 
+            if store.get("error", None):
+                return redirect(f"{reverse('create_store')}?error={store.get('error')}")
+        except:
+            pass
+        
         short_storename = name[:20] + '...' if len(name) > 20 else name
         request.session['store'] = name
         request.session['short_storename'] = short_storename
