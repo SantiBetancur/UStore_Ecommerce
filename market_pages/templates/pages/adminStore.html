@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head %} 
-    <link rel="stylesheet" href="{% static 'css/store.css' %}">>
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
                         {% if logo %}
-                        <img src="{% static 'images/default.png' %}" alt="Logo de la tienda" class="store-avatar-large">
+                        <img src="{% static logo %}" alt="Logo de la tienda" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
                         {% else %}
                         <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
