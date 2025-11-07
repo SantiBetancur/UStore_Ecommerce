@@ -5,3 +5,4 @@ PyJWT
 django-allauth
 cryptography
 requests
+rest_framework
