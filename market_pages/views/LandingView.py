@@ -4,7 +4,8 @@ from django.views.decorators.http import require_http_methods
 import logging
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator  # ✅ Import para la paginación
-from ..models import Product, Cart
+from ..models import Product, Cart, Favorite
+
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,7 @@ class LandingView(TemplateView):
         username = request.session.get('username', '') if request.user.is_authenticated else ''
         storename = request.session.get('short_storename', '') if request.session.get('short_storename', '') else "Mi tienda"
         cart_count = request.session.get('cart_count', 0)
+        favorite_product_ids = Favorite.objects.filter(user=request.user).values_list('product_id', flat=True)
 
         # --- Paginación de productos ---
         all_products = Product.objects.all().order_by('-created_at')  # productos más recientes primero
@@ -39,6 +41,8 @@ class LandingView(TemplateView):
             'user': request.user,
             'storename': storename,
             'cart_count': cart_count,
+            'favorite_product_ids': favorite_product_ids,
         }
+        print(context)
 
         return render(request, self.template_name, context)
