@@ -48,98 +48,107 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container my-4">
-    
-        <div class="card store-profile-card mb-5">
-            <div class="store-header-bg-custom">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <div class="pe-4">
-                            
-                            <h2 class="text-primary mb-3" style="font-weight: 700;"><span class="orange_square"></span>{{ name }}</h2>
-                            <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
-                                {{ description }}
-                            </p>
-                            <div class="d-flex gap-4 text-muted">
-                                <span><i class="fas fa-star text-warning me-1"></i>4.8 ({% trans "24 reseñas" %})</span>
-                                <span><i class="fas fa-box me-1"></i>{% trans "12 productos" %}</span>
-                                <span><i class="fas fa-clock me-1"></i>{% trans "Desde" %} 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
-                        {% if logo %}
-                        <img src="{% static logo %}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
-                        {% else %}
 <div class="container my-4">
-    <!-- Información de la Tienda -->
     <div class="card store-profile-card mb-5">
         <div class="store-header-bg-custom">
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="pe-4">
-                        <h2 class="text-primary mb-3" style="font-weight: 700;">
-                            <span class="orange_square"></span>{{ name }}
-                        </h2>
+                        
+                        <h2 class="text-primary mb-3" style="font-weight: 700;"><span class="orange_square"></span>{{ name }}</h2>
                         <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
                             {{ description }}
                         </p>
                         <div class="d-flex gap-4 text-muted">
                             <span><i class="fas fa-star text-warning me-1"></i>4.8 ({% trans "24 reseñas" %})</span>
-                            <span><i class="fas fa-box me-1"></i>{% blocktrans with count=product_count %}{{ count }} productos{% endblocktrans %}</span>
+                            <span><i class="fas fa-box me-1"></i>{% trans "12 productos" %}</span>
                             <span><i class="fas fa-clock me-1"></i>{% trans "Desde" %} 2023</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
                     {% if logo %}
-                        <img src="{{ logo.url }}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large">
+                    <img src="{% static logo %}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
                     {% else %}
-                        <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="logo" class="form-label fw-bold">{% trans "Logo de la Tienda" %}</label>
-                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" accept="image/*">
-                                <div class="form-text">{% trans "Formato recomendado: JPG, PNG. Máximo 2MB." %}</div>
+                <div class="container my-4">
+                    <!-- Información de la Tienda -->
+                    <div class="card store-profile-card mb-5">
+                        <div class="store-header-bg-custom">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="pe-4">
+                                        <h2 class="text-primary mb-3" style="font-weight: 700;">
+                                            <span class="orange_square"></span>{{ name }}
+                                        </h2>
+                                        <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
+                                            {{ description }}
+                                        </p>
+                                        <div class="d-flex gap-4 text-muted">
+                                            <span><i class="fas fa-star text-warning me-1"></i>4.8 ({% trans "24 reseñas" %})</span>
+                                            <span><i class="fas fa-box me-1"></i>{% blocktrans with count=product_count %}{{ count }} productos{% endblocktrans %}</span>
+                                            <span><i class="fas fa-clock me-1"></i>{% trans "Desde" %} 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
+                                    {% if logo %}
+                                        <img src="{{ logo.url }}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large">
+                                    {% else %}
+                                        <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="mb-3">
+                                                <label for="logo" class="form-label fw-bold">{% trans "Logo de la Tienda" %}</label>
+                                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" accept="image/*">
+                                                <div class="form-text">{% trans "Formato recomendado: JPG, PNG. Máximo 2MB." %}</div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" style="background-color: #24346c;">{% trans "Subir Logo" %}</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="background-color: #24346c;">{% trans "Subir Logo" %}</button>
-                        </form>
-                    {% endif %}
+                        </div>
+                    </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
+</div>
 
-        <!-- Productos de la Tienda -->
-        <div class="mb-4">
-            <h3 class="section-title">{% trans "Mis Productos" %}</h3>
-        </div>
-    <!-- Mis Productos -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="section-title mb-0">{% blocktrans with count=product_count %}Mis Productos ({{ count }}){% endblocktrans %}</h3>
-        <!-- Botón que redirige a la vista para crear producto -->
-        <a href="{% url 'create-product' %}" class="btn btn-success d-flex align-items-center gap-2" style="background-color:#24346c;">
-            <i class="fas fa-plus"></i> {% trans "Agregar producto" %}
-        </a>
-    </div>
+<!-- Productos de la Tienda -->
+<div class="mb-4">
+    <h3 class="section-title">{% trans "Mis Productos" %}</h3>
+</div>
+<!-- Mis Productos -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="section-title mb-0">{% blocktrans with count=product_count %} Mis Productos ({{ count }}){% endblocktrans %}</h3>
+    <!-- Botón que redirige a la vista para crear producto -->
+    <a href="{% url 'create-product' %}" class="btn btn-success d-flex align-items-center gap-2" style="background-color:#24346c;">
+        <i class="fas fa-plus"></i> {% trans "Agregar producto" %}
+    </a>
+</div>
 
-    <!-- Listado de productos -->
-    <div class="row g-4">
-        {% if products %}
-            {% for product in products %}
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card product-card h-100">
-                        <div class="product-image">
+<!-- Listado de productos -->
+<div class="row g-4">
+    {% if products %}
+        {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card product-card h-100">
+                    <div class="product-image">
+                        {% if product.image %}
                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                            <div class="ustore-watermark">UStore EAFIT</div>
-                        </div>
+                        {% else %}
+                            <img src="{% static 'images/default.png' %}" alt="{{ product.name }}">
+                        {% endif %}
                         <div class="ustore-watermark">{% trans "UStore EAFIT" %}</div>
                     </div>
-                    <div class="card-body">
-                        <h6 class="card-title mb-2">{% trans "Laptop Gaming Pro" %}</h6>
-                        <p class="card-text small text-muted mb-3">{% trans "Laptop de alta gama para gaming y trabajo profesional" %}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="price-tag">$2,599,000</span>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="card-title mb-2 fw-bold text-dark">{{ product.name }}</h6>
+                            <p class="card-text small text-muted mb-3">{{ product.description|truncatewords:12 }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="price-tag">${{ product.price }}</span>
                             <button class="btn btn-custom-primary btn-sm text-white">
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -147,26 +156,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div>
-                                <h6 class="card-title mb-2 fw-bold text-dark">{{ product.name }}</h6>
-                                <p class="card-text small text-muted mb-3">{{ product.description|truncatewords:12 }}</p>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="price-tag">${{ product.price }}</span>
-                                <button class="btn btn-custom-primary btn-sm text-white">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="text-muted text-center">{% trans "Aún no has agregado productos." %}</p>
-        {% endif %}
-    </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted text-center">{% trans "Aún no has agregado productos." %}</p>
+    {% endif %}
 </div>
+
 {% endblock %}
