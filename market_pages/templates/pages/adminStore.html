@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block extra_head %} 
     <link rel="stylesheet" href="{% static 'css/store.css' %}">
@@ -19,25 +19,25 @@
                                 {{ description }}
                             </p>
                             <div class="d-flex gap-4 text-muted">
-                                <span><i class="fas fa-star text-warning me-1"></i>4.8 (24 reseñas)</span>
-                                <span><i class="fas fa-box me-1"></i>12 productos</span>
-                                <span><i class="fas fa-clock me-1"></i>Desde 2023</span>
+                                <span><i class="fas fa-star text-warning me-1"></i>4.8 ({% trans "24 reseñas" %})</span>
+                                <span><i class="fas fa-box me-1"></i>{% trans "12 productos" %}</span>
+                                <span><i class="fas fa-clock me-1"></i>{% trans "Desde" %} 2023</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
                         {% if logo %}
-                        <img src="{% static logo %}" alt="Logo de la tienda" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
+                        <img src="{% static logo %}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
                         {% else %}
                         <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="logo" class="form-label fw-bold">Logo de la Tienda</label>
+                                <label for="logo" class="form-label fw-bold">{% trans "Logo de la Tienda" %}</label>
                                 <input type="file" class="form-control form-control-sm" id="logo" name="logo" 
                                         accept="image/*">
-                                <div class="form-text">Formato recomendado: JPG, PNG. Máximo 2MB.</div>
+                                <div class="form-text">{% trans "Formato recomendado: JPG, PNG. Máximo 2MB." %}</div>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="background-color: #24346c;">Subir Logo</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #24346c;">{% trans "Subir Logo" %}</button>
                         </form>
                         {% endif %}
                     </div>
@@ -47,7 +47,7 @@
 
         <!-- Productos de la Tienda -->
         <div class="mb-4">
-            <h3 class="section-title">Mis Productos</h3>
+            <h3 class="section-title">{% trans "Mis Productos" %}</h3>
         </div>
 
         <div class="row g-4">
@@ -58,11 +58,11 @@
                         <div class="product-logo">
                             <i class="fas fa-laptop"></i>
                         </div>
-                        <div class="ustore-watermark">UStore EAFIT</div>
+                        <div class="ustore-watermark">{% trans "UStore EAFIT" %}</div>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-title mb-2">Laptop Gaming Pro</h6>
-                        <p class="card-text small text-muted mb-3">Laptop de alta gama para gaming y trabajo profesional</p>
+                        <h6 class="card-title mb-2">{% trans "Laptop Gaming Pro" %}</h6>
+                        <p class="card-text small text-muted mb-3">{% trans "Laptop de alta gama para gaming y trabajo profesional" %}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="price-tag">$2,599,000</span>
                             <button class="btn btn-custom-primary btn-sm text-white">
