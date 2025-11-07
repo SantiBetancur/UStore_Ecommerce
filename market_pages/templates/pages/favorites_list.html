@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mis favoritos{% endblock %}
+
+{% block main %}
+<div class="container py-4">
+    <h1 class="mb-4 text-center">
+        <span class="highlight">Mis favoritos</span>
+    </h1>
+
+    {% if products %}
+        <div class="row g-4 justify-content-center">
+            {% for product in products %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                <div class="product-card shadow-sm rounded position-relative overflow-hidden">
+
+                    <!-- ❤️ Botón para quitar de favoritos -->
+                    <form method="POST" action="{% url 'toggle_favorite' product.id %}" class="position-absolute top-0 end-0 m-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link p-0">
+                            <i class="bi bi-heart-fill fs-4 text-danger"></i>
+                        </button>
+                    </form>
+
+                    <!-- Imagen del producto o imagen por defecto -->
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img w-100">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1606813902771-3c10fdf4b4f6?auto=format&fit=crop&w=600&q=60" 
+                             alt="{{ product.name }}" class="product-img w-100">
+                    {% endif %}
+
+                    <div class="product-content p-3">
+                        <div class="product-date-badge mb-2 text-muted">
+                            {% if product.created_at %}
+                                publicado {{ product.created_at|date:"M d, Y" }}
+                            {% endif %}
+                        </div>
+                        <h3 class="product-tittle mb-2">{{ product.name }}</h3>
+                        {% if product.category %}
+                            <p class="product-category text-secondary mb-2">{{ product.category }}</p>
+                        {% endif %}
+                        <p class="product-description mb-3">{{ product.description|truncatewords:20 }}</p>
+                        
+                        <div class="product-footer d-flex justify-content-between align-items-center">
+                            <div class="product-price fw-bold">
+                                ${{ product.price|floatformat:0 }}
+                            </div>
+                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-sm">
+                                <i class="bi bi-cart-plus"></i> Agregar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted mt-5 fs-5">Aún no tienes productos en tus favoritos.</p>
+    {% endif %}
+</div>
+{% endblock %}

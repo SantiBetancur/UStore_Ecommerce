@@ -30,6 +30,26 @@
             {% for product in products %}
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                 <div class="product-card position-relative">
+
+                    <!-- ❤️ FAVORITOS: Form POST -->
+                    {% if user.is_authenticated %}
+                        <form method="POST" action="{% url 'toggle_favorite' product.id %}" class="position-absolute top-0 end-0 m-2">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link p-0">
+                                {% if product.id in favorite_product_ids %}
+                                    <i class="bi bi-heart-fill fs-4 text-danger"></i>
+                                {% else %}
+                                    <i class="bi bi-heart fs-4 text-danger"></i>
+                                {% endif %}
+                            </button>
+                        </form>
+                    {% else %}
+                        <div class="favorite-icon position-absolute top-0 end-0 m-2">
+                            <a href="{% url 'login' %}">
+                                <i class="bi bi-heart fs-4 text-danger" title="Inicia sesión para favoritos"></i>
+                            </a>
+                        </div>
+                    {% endif %}
                     
                     <!-- Imagen del producto o imagen por defecto -->
                     {% if product.image %}
@@ -74,8 +94,6 @@
 {% if products.has_other_pages %}
 <nav aria-label="Page navigation" class="pagination-container">
     <ul class="pagination justify-content-center">
-
-        {# Botón "Anterior" #}
         {% if products.has_previous %}
             <li class="page-item">
                 <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">{% trans "Anterior" %}</a>
@@ -86,58 +104,43 @@
             </li>
         {% endif %}
 
-        {# Mostrar siempre la primera página y puntos si corresponde #}
         {% if products.number > 3 %}
             <li class="page-item">
                 <a class="page-link pagination-btn" href="?page=1">1</a>
             </li>
             {% if products.number > 4 %}
-                <li class="page-item disabled">
-                    <span class="page-link pagination-btn">…</span>
-                </li>
+                <li class="page-item disabled"><span class="page-link pagination-btn">…</span></li>
             {% endif %}
         {% endif %}
 
-        {# Mostrar páginas cercanas (ventana ±2) #}
         {% for num in products.paginator.page_range %}
             {% if num >= products.number|add:-2 and num <= products.number|add:2 %}
                 {% if num == products.number %}
-                    <li class="page-item active">
-                        <span class="page-link pagination-btn">{{ num }}</span>
-                    </li>
+                    <li class="page-item active"><span class="page-link pagination-btn">{{ num }}</span></li>
                 {% else %}
-                    <li class="page-item">
-                        <a class="page-link pagination-btn" href="?page={{ num }}">{{ num }}</a>
-                    </li>
+                    <li class="page-item"><a class="page-link pagination-btn" href="?page={{ num }}">{{ num }}</a></li>
                 {% endif %}
             {% endif %}
         {% endfor %}
 
-        {# Mostrar puntos y última página si corresponde #}
-            {% if products.number < products.paginator.num_pages|add:-2 %}
+        {% if products.number < products.paginator.num_pages|add:-2 %}
             {% if products.number < products.paginator.num_pages|add:-3 %}
-                <li class="page-item disabled">
-                    <span class="page-link pagination-btn">…</span>
-                </li>
+                <li class="page-item disabled"><span class="page-link pagination-btn">…</span></li>
             {% endif %}
-            <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.paginator.num_pages }}">
-                    {{ products.paginator.num_pages }}
-                </a>
-            </li>
+            <li class="page-item"><a class="page-link pagination-btn" href="?page={{ products.paginator.num_pages }}">{{ products.paginator.num_pages }}</a></li>
         {% endif %}
 
-        {# Botón "Siguiente" #}
         {% if products.has_next %}
-            <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">{% trans "Siguiente" %}</a>
-            </li>
+            <li class="page-item"><a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">Siguiente</a></li>
         {% else %}
-            <li class="page-item disabled">
-                <span class="page-link pagination-btn">{% trans "Siguiente" %}</span>
-            </li>
+            <li class="page-item disabled"><span class="page-link pagination-btn">Siguiente</span></li>
         {% endif %}
     </ul>
 </nav>
 {% endif %}
 {% endblock %}
+
+{% block extra_js %}
+<!-- Ya no se necesita JS para toggle de favoritos -->
+{% endblock %}
+
