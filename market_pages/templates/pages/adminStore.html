@@ -2,76 +2,128 @@
 {% load static %}
 
 {% block extra_head %} 
-    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+<link rel="stylesheet" href="{% static 'css/store.css' %}">
+<style>
+    /* 🎨 Estilos adicionales para mejorar las tarjetas de productos */
+    .product-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        background-color: #fff;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .product-image {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .ustore-watermark {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background-color: rgba(36, 52, 108, 0.8);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+    .price-tag {
+        font-weight: 700;
+        color: #24346c;
+        font-size: 1rem;
+    }
+</style>
 {% endblock %}
 
 {% block main %}
-    <div class="container my-4">
-    
-        <div class="card store-profile-card mb-5">
-            <div class="store-header-bg-custom">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <div class="pe-4">
-                            
-                            <h2 class="text-primary mb-3" style="font-weight: 700;"><span class="orange_square"></span>{{ name }}</h2>
-                            <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
-                                {{ description }}
-                            </p>
-                            <div class="d-flex gap-4 text-muted">
-                                <span><i class="fas fa-star text-warning me-1"></i>4.8 (24 reseñas)</span>
-                                <span><i class="fas fa-box me-1"></i>12 productos</span>
-                                <span><i class="fas fa-clock me-1"></i>Desde 2023</span>
-                            </div>
+<div class="container my-4">
+    <!-- Información de la Tienda -->
+    <div class="card store-profile-card mb-5">
+        <div class="store-header-bg-custom">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="pe-4">
+                        <h2 class="text-primary mb-3" style="font-weight: 700;">
+                            <span class="orange_square"></span>{{ name }}
+                        </h2>
+                        <p class="text-muted text-justify lh-lg mb-4" style="font-size: 1.05rem;">
+                            {{ description }}
+                        </p>
+                        <div class="d-flex gap-4 text-muted">
+                            <span><i class="fas fa-star text-warning me-1"></i>4.8 (24 reseñas)</span>
+                            <span><i class="fas fa-box me-1"></i>{{ product_count }} productos</span>
+                            <span><i class="fas fa-clock me-1"></i>Desde 2023</span>
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
-                        {% if logo %}
-                        <img src="{% static logo %}" alt="Logo de la tienda" class="store-avatar-large" style="max-height: 200px; border-radius: 20%;">
-                        {% else %}
+                </div>
+                <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
+                    {% if logo %}
+                        <img src="{{ logo.url }}" alt="Logo de la tienda" class="store-avatar-large">
+                    {% else %}
                         <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label for="logo" class="form-label fw-bold">Logo de la Tienda</label>
-                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" 
-                                        accept="image/*">
+                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" accept="image/*">
                                 <div class="form-text">Formato recomendado: JPG, PNG. Máximo 2MB.</div>
                             </div>
                             <button type="submit" class="btn btn-primary" style="background-color: #24346c;">Subir Logo</button>
                         </form>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Productos de la Tienda -->
-        <div class="mb-4">
-            <h3 class="section-title">Mis Productos</h3>
-        </div>
-
-        <div class="row g-4">
-            <!-- Producto 1 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card product-card">
-                    <div class="product-image">
-                        <div class="product-logo">
-                            <i class="fas fa-laptop"></i>
-                        </div>
-                        <div class="ustore-watermark">UStore EAFIT</div>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title mb-2">Laptop Gaming Pro</h6>
-                        <p class="card-text small text-muted mb-3">Laptop de alta gama para gaming y trabajo profesional</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="price-tag">$2,599,000</span>
-                            <button class="btn btn-custom-primary btn-sm text-white">
-                                <i class="fas fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Mis Productos -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title mb-0">Mis Productos ({{ product_count }})</h3>
+        <!-- Botón que redirige a la vista para crear producto -->
+        <a href="{% url 'create-product' %}" class="btn btn-success d-flex align-items-center gap-2" style="background-color:#24346c;">
+            <i class="fas fa-plus"></i> Agregar producto
+        </a>
+    </div>
+
+    <!-- Listado de productos -->
+    <div class="row g-4">
+        {% if products %}
+            {% for product in products %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100">
+                        <div class="product-image">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <div class="ustore-watermark">UStore EAFIT</div>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h6 class="card-title mb-2 fw-bold text-dark">{{ product.name }}</h6>
+                                <p class="card-text small text-muted mb-3">{{ product.description|truncatewords:12 }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="price-tag">${{ product.price }}</span>
+                                <button class="btn btn-custom-primary btn-sm text-white">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center">Aún no has agregado productos.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
