@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/store.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg p-4 rounded-4">
+        <h2 class="mb-4 text-primary fw-bold text-center">Agregar un nuevo producto</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+                {% for field in form %}
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="{% url 'admin_store' %}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary" style="background-color:#24346c;">Guardar Producto</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
