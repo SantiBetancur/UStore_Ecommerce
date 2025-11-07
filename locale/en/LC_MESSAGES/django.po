@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: UStore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 21:59-0500\n"
+"POT-Creation-Date: 2025-11-06 23:00-0500\n"
 "PO-Revision-Date: 2025-11-06 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language-Team: English\n"
@@ -12,51 +12,195 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\market_pages\templates\pages\adminStore.html:22
+#: .\market_pages\templates\base.html:35
+msgid "Search products, categories..."
+msgstr ""
+
+#: .\market_pages\templates\base.html:42
+msgid "Resultados de búsqueda"
+msgstr ""
+
+#: .\market_pages\templates\base.html:71
+msgid "Ingresar"
+msgstr ""
+
+#: .\market_pages\templates\base.html:72
+msgid "Registrarse"
+msgstr ""
+
+#: .\market_pages\templates\base.html:83
+msgid "Vende con nosotros"
+msgstr ""
+
+#: .\market_pages\templates\base.html:95
+msgid "Salir"
+msgstr ""
+
+#: .\market_pages\templates\base.html:120
+msgid ""
+"El espacio perfecto para conocer y apoyar el trabajo de emprendedores "
+"Eafitenses. Conectamos talento local con la comunidad universitaria."
+msgstr ""
+
+#: .\market_pages\templates\base.html:143
+msgid "Accesos Rápidos"
+msgstr ""
+
+#: .\market_pages\templates\base.html:148
+msgid "Inicio"
+msgstr ""
+
+#: .\market_pages\templates\base.html:153
+msgid "de nosotros"
+msgstr ""
+
+#: .\market_pages\templates\base.html:158
+#: .\market_pages\templates\base.html:236
+msgid "Contacto"
+msgstr ""
+
+#: .\market_pages\templates\base.html:163
+msgid "Centro de ayuda"
+msgstr ""
+
+#: .\market_pages\templates\base.html:174
+msgid "Servicio al Cliente"
+msgstr ""
+
+#: .\market_pages\templates\base.html:179
+msgid "Soporte en vivo"
+msgstr ""
+
+#: .\market_pages\templates\base.html:184
+msgid "Política de devoluciones"
+msgstr ""
+
+#: .\market_pages\templates\base.html:189
+msgid "Garantías"
+msgstr ""
+
+#: .\market_pages\templates\base.html:194
+msgid "Entregas en el campus"
+msgstr ""
+
+#: .\market_pages\templates\base.html:205
+msgid "Para Vendedores"
+msgstr ""
+
+#: .\market_pages\templates\base.html:210
+#, fuzzy
+#| msgid "Crear Mi Tienda"
+msgid "Crear tienda"
+msgstr "Create My Store"
+
+#: .\market_pages\templates\base.html:215
+#, fuzzy
+#| msgid "Ver productos"
+msgid "Vender productos"
+msgstr "View products"
+
+#: .\market_pages\templates\base.html:220
+msgid "Comisiones"
+msgstr ""
+
+#: .\market_pages\templates\base.html:225
+msgid "Guía del vendedor"
+msgstr ""
+
+#: .\market_pages\templates\base.html:241
+msgid "Universidad EAFIT"
+msgstr ""
+
+#: .\market_pages\templates\base.html:241
+msgid "Medellín, Colombia"
+msgstr ""
+
+#: .\market_pages\templates\base.html:261
+msgid "Todos los derechos reservados."
+msgstr ""
+
+#: .\market_pages\templates\base.html:266
+msgid "Términos de servicio"
+msgstr ""
+
+#: .\market_pages\templates\base.html:267
+msgid "Política de privacidad"
+msgstr ""
+
+#: .\market_pages\templates\base.html:268
+msgid "Cookies"
+msgstr ""
+
+#: .\market_pages\templates\pages\adminStore.html:64
+#: .\market_pages\templates\pages\adminStore.html:88
 msgid "24 reseñas"
 msgstr "24 reviews"
 
-#: .\market_pages\templates\pages\adminStore.html:23
+#: .\market_pages\templates\pages\adminStore.html:65
 msgid "12 productos"
 msgstr "12 products"
 
-#: .\market_pages\templates\pages\adminStore.html:24
+#: .\market_pages\templates\pages\adminStore.html:66
+#: .\market_pages\templates\pages\adminStore.html:90
 msgid "Desde"
 msgstr "Since"
 
-#: .\market_pages\templates\pages\adminStore.html:30
+#: .\market_pages\templates\pages\adminStore.html:72
+#: .\market_pages\templates\pages\adminStore.html:96
 msgid "Logo de la tienda"
 msgstr "Store logo"
 
-#: .\market_pages\templates\pages\adminStore.html:35
+#: .\market_pages\templates\pages\adminStore.html:89
+#, fuzzy, python-format
+#| msgid "12 productos"
+msgid "%(count)s productos"
+msgstr "12 products"
+
+#: .\market_pages\templates\pages\adminStore.html:101
 #: .\market_pages\templates\pages\createStore.html:46
 msgid "Logo de la Tienda"
 msgstr "Store logo"
 
-#: .\market_pages\templates\pages\adminStore.html:38
+#: .\market_pages\templates\pages\adminStore.html:103
 #: .\market_pages\templates\pages\createStore.html:49
 msgid "Formato recomendado: JPG, PNG. Máximo 2MB."
 msgstr "Recommended format: JPG, PNG. Maximum 2MB."
 
-#: .\market_pages\templates\pages\adminStore.html:40
+#: .\market_pages\templates\pages\adminStore.html:105
 msgid "Subir Logo"
 msgstr "Upload Logo"
 
-#: .\market_pages\templates\pages\adminStore.html:50
+#: .\market_pages\templates\pages\adminStore.html:115
 msgid "Mis Productos"
 msgstr "My Products"
 
-#: .\market_pages\templates\pages\adminStore.html:61
+#: .\market_pages\templates\pages\adminStore.html:119
+#, fuzzy, python-format
+#| msgid "Mis Productos"
+msgid "Mis Productos (%(count)s)"
+msgstr "My Products"
+
+#: .\market_pages\templates\pages\adminStore.html:122
+#, fuzzy
+#| msgid "Ver productos"
+msgid "Agregar producto"
+msgstr "View products"
+
+#: .\market_pages\templates\pages\adminStore.html:136
 msgid "UStore EAFIT"
 msgstr "UStore EAFIT"
 
-#: .\market_pages\templates\pages\adminStore.html:64
+#: .\market_pages\templates\pages\adminStore.html:139
 msgid "Laptop Gaming Pro"
 msgstr "Gaming Pro Laptop"
 
-#: .\market_pages\templates\pages\adminStore.html:65
+#: .\market_pages\templates\pages\adminStore.html:140
 msgid "Laptop de alta gama para gaming y trabajo profesional"
 msgstr "High-end laptop for gaming and professional work"
+
+#: .\market_pages\templates\pages\adminStore.html:168
+msgid "Aún no has agregado productos."
+msgstr ""
 
 #: .\market_pages\templates\pages\cart.html:15
 msgid "Mi Carrito"
@@ -127,8 +271,11 @@ msgid "Tu carrito está vacío"
 msgstr "Your cart is empty"
 
 #: .\market_pages\templates\pages\cart.html:151
-msgid "No tienes productos en tu carrito. ¡Explora nuestros productos y agrega algunos!"
-msgstr "You don't have any products in your cart. Explore our products and add some!"
+msgid ""
+"No tienes productos en tu carrito. ¡Explora nuestros productos y agrega "
+"algunos!"
+msgstr ""
+"You don't have any products in your cart. Explore our products and add some!"
 
 #: .\market_pages\templates\pages\cart.html:154
 msgid "Ver productos"
@@ -160,51 +307,66 @@ msgstr "Describe your store, the products you sell, what makes it special..."
 
 #: .\market_pages\templates\pages\createStore.html:39
 msgid "Máximo 500 caracteres. Esta descripción aparecerá en tu perfil público."
-msgstr "Maximum 500 characters. This description will appear on your public profile."
+msgstr ""
+"Maximum 500 characters. This description will appear on your public profile."
 
 #: .\market_pages\templates\pages\createStore.html:62
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: .\market_pages\templates\pages\landing.html:13
+#: .\market_pages\templates\pages\landing.html:11
 msgid "Encuentra productos y servicios de emprendedores"
 msgstr "Find products and services from entrepreneurs"
 
-#: .\market_pages\templates\pages\landing.html:13
+#: .\market_pages\templates\pages\landing.html:12
 msgid "Eafitenses"
 msgstr "Eafitenses"
 
-#: .\market_pages\templates\pages\landing.html:16
+#: .\market_pages\templates\pages\landing.html:17
 msgid "Categorías principales"
 msgstr "Main categories"
 
-#: .\market_pages\templates\pages\landing.html:17
+#: .\market_pages\templates\pages\landing.html:18
 msgid "Servicios Académicos"
 msgstr "Academic Services"
 
-#: .\market_pages\templates\pages\landing.html:18
+#: .\market_pages\templates\pages\landing.html:19
 msgid "Productos electrónicos"
 msgstr "Electronic products"
 
-#: .\market_pages\templates\pages\landing.html:19
+#: .\market_pages\templates\pages\landing.html:20
 msgid "Productos de consumo"
 msgstr "Consumer products"
 
-#: .\market_pages\templates\pages\landing.html:20
+#: .\market_pages\templates\pages\landing.html:21
 msgid "Ropa y accesorios"
 msgstr "Clothing and accessories"
 
-#: .\market_pages\templates\pages\landing.html:26
+#: .\market_pages\templates\pages\landing.html:27
 msgid "Últimas publicaciones"
 msgstr "Latest posts"
 
-#: .\market_pages\templates\pages\landing.html:41
+#: .\market_pages\templates\pages\landing.html:48
 msgid "publicado"
 msgstr "published"
 
-#: .\market_pages\templates\pages\landing.html:54
+#: .\market_pages\templates\pages\landing.html:62
 msgid "Agregar"
 msgstr "Add"
+
+#: .\market_pages\templates\pages\landing.html:71
+msgid "No hay productos disponibles en este momento."
+msgstr ""
+
+#: .\market_pages\templates\pages\landing.html:84
+#: .\market_pages\templates\pages\landing.html:88
+msgid "Anterior"
+msgstr ""
+
+#: .\market_pages\templates\pages\landing.html:136
+#: .\market_pages\templates\pages\landing.html:140
+msgid "Siguiente"
+msgstr ""
 
 #: .\users\templates\layouts\logInContainer.html:8
 msgid "Logo de UStore"
@@ -233,6 +395,367 @@ msgstr "Back"
 #: .\users\templates\socialaccount\login.html:34
 msgid "Continuar"
 msgstr "Continue"
+
+#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
+msgid "Messages"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: .\venv\Lib\site-packages\django\core\paginator.py:30
+msgid "…"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:70
+msgid "Enter a valid domain name."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:153
+#: .\venv\Lib\site-packages\django\forms\fields.py:775
+msgid "Enter a valid URL."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:200
+msgid "Enter a valid integer."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:211
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: .\venv\Lib\site-packages\django\core\validators.py:289
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:309
+#: .\venv\Lib\site-packages\django\core\validators.py:318
+#: .\venv\Lib\site-packages\django\core\validators.py:332
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2220
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:311
+msgid "IPv4"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:320
+#: .\venv\Lib\site-packages\django\utils\ipv6.py:43
+msgid "IPv6"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:334
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:375
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:381
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:416
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:425
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:434
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:441
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:473
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:491
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:514
+#: .\venv\Lib\site-packages\django\forms\fields.py:366
+#: .\venv\Lib\site-packages\django\forms\fields.py:405
+msgid "Enter a number."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:516
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:521
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:526
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:597
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:659
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\base.py:1600
+#: .\venv\Lib\site-packages\django\forms\models.py:908
+msgid "and"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\base.py:1602
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1162
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1163
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1165
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1215
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1217
+msgid "String (unlimited)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1326
+msgid "Comma-separated integers"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1427
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1431
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1566
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1435
+msgid "Date (without time)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1562
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1570
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1575
+msgid "Date (with time)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1702
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1704
+msgid "Decimal number"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1864
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1868
+msgid "Duration"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1920
+msgid "Email address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1945
+msgid "File path"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2023
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
+msgid "Floating point number"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2067
+msgid "Integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2163
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2180
+msgid "Small integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2188
+msgid "IPv4 address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2219
+msgid "IP address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2310
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2311
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2313
 msgid "Boolean (Either True, False or None)"
 msgstr ""
 

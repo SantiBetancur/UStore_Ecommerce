@@ -85,26 +85,22 @@
                             {{ description }}
                         </p>
                         <div class="d-flex gap-4 text-muted">
-                            <span><i class="fas fa-star text-warning me-1"></i>4.8 (24 reseñas)</span>
-                            <span><i class="fas fa-box me-1"></i>{{ product_count }} productos</span>
-                            <span><i class="fas fa-clock me-1"></i>Desde 2023</span>
+                            <span><i class="fas fa-star text-warning me-1"></i>4.8 ({% trans "24 reseñas" %})</span>
+                            <span><i class="fas fa-box me-1"></i>{% blocktrans with count=product_count %}{{ count }} productos{% endblocktrans %}</span>
+                            <span><i class="fas fa-clock me-1"></i>{% trans "Desde" %} 2023</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 100%;">
                     {% if logo %}
-                        <img src="{{ logo.url }}" alt="Logo de la tienda" class="store-avatar-large">
+                        <img src="{{ logo.url }}" alt="{% trans 'Logo de la tienda' %}" class="store-avatar-large">
                     {% else %}
                         <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label for="logo" class="form-label fw-bold">{% trans "Logo de la Tienda" %}</label>
-                                <input type="file" class="form-control form-control-sm" id="logo" name="logo" 
-                                        accept="image/*">
-                                <div class="form-text">{% trans "Formato recomendado: JPG, PNG. Máximo 2MB." %}</div>
-                                <label for="logo" class="form-label fw-bold">Logo de la Tienda</label>
                                 <input type="file" class="form-control form-control-sm" id="logo" name="logo" accept="image/*">
-                                <div class="form-text">Formato recomendado: JPG, PNG. Máximo 2MB.</div>
+                                <div class="form-text">{% trans "Formato recomendado: JPG, PNG. Máximo 2MB." %}</div>
                             </div>
                             <button type="submit" class="btn btn-primary" style="background-color: #24346c;">{% trans "Subir Logo" %}</button>
                         </form>
@@ -120,10 +116,10 @@
         </div>
     <!-- Mis Productos -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="section-title mb-0">Mis Productos ({{ product_count }})</h3>
+        <h3 class="section-title mb-0">{% blocktrans with count=product_count %}Mis Productos ({{ count }}){% endblocktrans %}</h3>
         <!-- Botón que redirige a la vista para crear producto -->
         <a href="{% url 'create-product' %}" class="btn btn-success d-flex align-items-center gap-2" style="background-color:#24346c;">
-            <i class="fas fa-plus"></i> Agregar producto
+            <i class="fas fa-plus"></i> {% trans "Agregar producto" %}
         </a>
     </div>
 
@@ -169,7 +165,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="text-muted text-center">Aún no has agregado productos.</p>
+            <p class="text-muted text-center">{% trans "Aún no has agregado productos." %}</p>
         {% endif %}
     </div>
 </div>

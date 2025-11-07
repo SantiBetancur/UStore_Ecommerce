@@ -3,86 +3,28 @@
 
 {% block title %} {{ page_title }}{% endblock %}
 
-    {% block main %}
-    <!-- Main Content -->    
-        <div class="categories-container">
-
-            <div class="sub-header">
-                <h1>{% trans "Encuentra productos y servicios de emprendedores" %} <span style="color: #24346c; font-weight:bold">{% trans "Eafitenses" %}</span></h1>
-            </div>
-            <nav class="categories-nav">
-                <p><span class="orange_square"></span>{% trans "Categorías principales" %}</p>
-                <button>{% trans "Servicios Académicos" %}</button>
-                <button>{% trans "Productos electrónicos" %}</button>
-                <button>{% trans "Productos de consumo" %}</button>
-                <button>{% trans "Ropa y accesorios" %}</button>
-            </nav>
-        </div>
-        
-        <!-- Productos -->
-            <div class="sub-header" >
-                <h2></span>{% trans "Últimas publicaciones" %}</h2>
-            </div>
-        
-         <div class="container-fluid px-4">
-            <div class="row g-4 justify-content-center">
-                {% for product in products %}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="product-card position-relative" style="box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);">
-                
-                            
-                        <!-- <img src="{{ product.image.url }}" alt="{{ product.name }}"> -->
-                        <img src="{% static 'images/default.png' %}" alt="{{ product.name }}">
-                        <div class="product-content">
-                                <div class="product-date-badge " style="color:#ffffff ; font-size: 12px; font-weight:bold;">
-                                <span class="orange_square"></span>
-                                {% trans "publicado" %} {{ product.created_at|date:"M d" }}
-                            </div>
-                            <h3 class="product-tittle">{{ product.name }}</h3>
-                            <p class="product-category">{{ product.category }}</p>
-                            <p class="product-description">{{ product.description }}</p>
-                            
-                            <!-- Footer con precio y botón 50-50 -->
-                            <div class="product-footer d-flex justify-content-between align-items-center">
-                                <div class="product-price">
-                                    <span class="price-amount">${{ product.price|floatformat:0 }}</span>
-                                </div>
-                                <div class="product-actions">
-                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-sm px-2 py-1" style="font-size: 0.75rem;">
-                                        <i class="bi bi-cart-plus"></i> {% trans "Agregar" %}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-         </div>
-        
-
 {% block main %}
 <!-- Main Content -->    
 <div class="categories-container">
     <div class="sub-header">
         <h1>
-            Encuentra productos y servicios de emprendedores 
-            <span class="highlight">Eafitenses</span>
+            {% trans "Encuentra productos y servicios de emprendedores" %} 
+            <span class="highlight">{% trans "Eafitenses" %}</span>
         </h1>
     </div>
 
     <nav class="categories-nav">
-        <p><span class="orange_square"></span>Categorías principales</p>
-        <button>Servicios Académicos</button>
-        <button>Productos electrónicos</button>
-        <button>Productos de consumo</button>
-        <button>Ropa y accesorios</button>
+        <p><span class="orange_square"></span>{% trans "Categorías principales" %}</p>
+        <button>{% trans "Servicios Académicos" %}</button>
+        <button>{% trans "Productos electrónicos" %}</button>
+        <button>{% trans "Productos de consumo" %}</button>
+        <button>{% trans "Ropa y accesorios" %}</button>
     </nav>
 </div>
 
 <!-- Productos -->
-<div class="sub-header">
-    <h2>Últimas publicaciones</h2>
+    <div class="sub-header">
+    <h2>{% trans "Últimas publicaciones" %}</h2>
 </div>
 
 <div class="container-fluid px-4">
@@ -103,7 +45,7 @@
                     <div class="product-content">
                         <div class="product-date-badge">
                             <span class="orange_square"></span>
-                            publicado {{ product.created_at|date:"M d" }}
+                            {% trans "publicado" %} {{ product.created_at|date:"M d" }}
                         </div>
                         <h3 class="product-tittle">{{ product.name }}</h3>
                         <p class="product-category">{{ product.category }}</p>
@@ -117,7 +59,7 @@
                             <div class="product-actions">
                                 <a href="{% url 'add_to_cart' product.id %}" 
                                    class="btn btn-primary btn-sm add-to-cart-btn">
-                                    <i class="bi bi-cart-plus"></i> Agregar
+                                    <i class="bi bi-cart-plus"></i> {% trans "Agregar" %}
                                 </a>
                             </div>
                         </div>
@@ -126,7 +68,7 @@
             </div>
             {% endfor %}
         {% else %}
-            <p class="text-center text-muted mt-4">No hay productos disponibles en este momento.</p>
+            <p class="text-center text-muted mt-4">{% trans "No hay productos disponibles en este momento." %}</p>
         {% endif %}
     </div>
 </div>
@@ -139,11 +81,11 @@
         {# Botón "Anterior" #}
         {% if products.has_previous %}
             <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">Anterior</a>
+                <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">{% trans "Anterior" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <span class="page-link pagination-btn">Anterior</span>
+                <span class="page-link pagination-btn">{% trans "Anterior" %}</span>
             </li>
         {% endif %}
 
@@ -175,7 +117,7 @@
         {% endfor %}
 
         {# Mostrar puntos y última página si corresponde #}
-        {% if products.number < products.paginator.num_pages|add:-2 %}
+            {% if products.number < products.paginator.num_pages|add:-2 %}
             {% if products.number < products.paginator.num_pages|add:-3 %}
                 <li class="page-item disabled">
                     <span class="page-link pagination-btn">…</span>
@@ -191,11 +133,11 @@
         {# Botón "Siguiente" #}
         {% if products.has_next %}
             <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">Siguiente</a>
+                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">{% trans "Siguiente" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <span class="page-link pagination-btn">Siguiente</span>
+                <span class="page-link pagination-btn">{% trans "Siguiente" %}</span>
             </li>
         {% endif %}
     </ul>
