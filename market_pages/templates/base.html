@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,23 +29,35 @@
                 </div>
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <form class="search-form d-flex align-items-center w-100" method="GET" action="#">
+                        <form class="search-form d-flex align-items-center w-100" method="GET" action="#">
                         <span class="orange_square"></span>
                         <div class="input-group position-relative">
-                            <input type="text" id="searchInput" name="q" placeholder="Search products, categories..." class="form-control bg-white border-end-0" style="box-shadow:none;" autocomplete="off">
+                            <input type="text" id="searchInput" name="q" placeholder="{% trans "Search products, categories..." %}" class="form-control bg-white border-end-0" style="box-shadow:none;" autocomplete="off">
                             <button type="submit" class="btn btn-primary" style="background-color: #24346c; border: none;">
                                 <i class="bi bi-search"></i>
                             </button>
                             <!-- Modal de resultados de búsqueda -->
                             <div id="searchResults" class="search-results-modal" style="display: none;">
                                 <div class="search-results-header">
-                                    <h6 class="mb-0">Resultados de búsqueda</h6>
+                                    <h6 class="mb-0">{% trans "Resultados de búsqueda" %}</h6>
                                 </div>
                                 <div id="searchResultsList" class="search-results-list">
                                     <!-- Los resultados se cargarán aquí -->
                                 </div>
                             </div>
                         </div>
+                    </form>
+                </div>
+
+                <!-- Language selector -->
+                <div class="language-selector ms-3">
+                    <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                        <select name="language" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="es" {% if LANGUAGE_CODE == 'es' %}selected{% endif %}>Español</option>
+                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                        </select>
                     </form>
                 </div>
     
@@ -56,8 +68,8 @@
                         <i class="bi bi-cart"></i>
                         <span class="cart-count" style="color: #e4783a;">{{ cart.items.count }}</span>
                     </a>
-                    <a href="/login" class="login-link">Ingresar</a>
-                    <a href="/signin" class="register-link">Registrarse</a>
+                    <a href="/login" class="login-link">{% trans "Ingresar" %}</a>
+                    <a href="/signin" class="register-link">{% trans "Registrarse" %}</a>
                 </div>
                 {% endif %}
                 {% if user.is_authenticated %}
@@ -72,8 +84,8 @@
                         <span class="cart-count" style="color: #e4783a;">{{ cart_count }}</span>
                     </a>
                     {% if not user.has_store%}
-                    <a href="{% url 'create_store' %}" class="login-link btn btn-primary" style="background-color: #24346c; border: none; color: white;">
-                        <i class="bi bi-shop"></i> Vende con nosotros
+                        <a href="{% url 'create_store' %}" class="login-link btn btn-primary" style="background-color: #24346c; border: none; color: white;">
+                        <i class="bi bi-shop"></i> {% trans "Vende con nosotros" %}
                     </a>
                     {% endif %}
                     {% if user.has_store%}
@@ -85,11 +97,12 @@
                     <a href="#" class="register-link">
                         <i class="bi bi-person-circle"></i> {{username}}
                     </a>
-                    <a href="/logout" class="login-link"> <i class="bi bi-box-arrow-right"></i> Salir</a>
+                    <a href="/logout" class="login-link"> <i class="bi bi-box-arrow-right"></i> {% trans "Salir" %}</a>
                 </div>
                 {% endif %}
             </div>
         </header>
+            <!-- i18n debug panel removed -->
     <!-- Page Content Block -->
     <main>
     {% block main %}
@@ -103,14 +116,13 @@
             <div class="row g-4">
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="footer-brand mb-4">
+                            <div class="footer-brand mb-4">
                         <div class="d-flex align-items-center mb-3">
                             <img src="{% static 'images/UStore Logo.png' %}" alt="UStore Logo" class="footer-logo me-2">
                    
                         </div>
                         <p class="text-muted mb-4">
-                            El espacio perfecto para conocer y apoyar el trabajo de emprendedores Eafitenses. 
-                            Conectamos talento local con la comunidad universitaria.
+                            {% blocktrans %}El espacio perfecto para conocer y apoyar el trabajo de emprendedores Eafitenses. Conectamos talento local con la comunidad universitaria.{% endblocktrans %}
                         </p>
                         <div class="social-links">
                             <a href="#" class="social-link me-3" title="Facebook">
@@ -132,28 +144,28 @@
                 <!-- Quick Links -->
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-section">
-                        <h6 class="footer-title text-dark fw-semibold mb-3">
-                            <span class="orange_square"></span>Accesos Rápidos
+                            <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>{% trans "Accesos Rápidos" %}
                         </h6>
                         <ul class="footer-links list-unstyled">
                             <li class="mb-2">
                                 <a href="{% url 'landing' %}" class="footer-link">
-                                    <i class="bi bi-house me-2"></i> Inicio
+                                    <i class="bi bi-house me-2"></i> {% trans "Inicio" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-info-circle me-2"></i> de nosotros
+                                    <i class="bi bi-info-circle me-2"></i> {% trans "de nosotros" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-envelope me-2"></i> Contacto
+                                    <i class="bi bi-envelope me-2"></i> {% trans "Contacto" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-question-circle me-2"></i> Centro de ayuda
+                                    <i class="bi bi-question-circle me-2"></i> {% trans "Centro de ayuda" %}
                                 </a>
                             </li>
                         </ul>
@@ -163,28 +175,28 @@
                 <!-- Customer Service -->
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-section">
-                        <h6 class="footer-title text-dark fw-semibold mb-3">
-                            <span class="orange_square"></span>Servicio al Cliente
+                            <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>{% trans "Servicio al Cliente" %}
                         </h6>
                         <ul class="footer-links list-unstyled">
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-chat-dots me-2"></i>Soporte en vivo
+                                    <i class="bi bi-chat-dots me-2"></i>{% trans "Soporte en vivo" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-file-text me-2"></i>Política de devoluciones
+                                    <i class="bi bi-file-text me-2"></i>{% trans "Política de devoluciones" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-shield-check me-2"></i>Garantías
+                                    <i class="bi bi-shield-check me-2"></i>{% trans "Garantías" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-truck me-2"></i>Entregas en el campus
+                                    <i class="bi bi-truck me-2"></i>{% trans "Entregas en el campus" %}
                                 </a>
                             </li>
                         </ul>
@@ -194,28 +206,28 @@
                 <!-- Seller Info -->
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-section">
-                        <h6 class="footer-title text-dark fw-semibold mb-3">
-                            <span class="orange_square"></span>Para Vendedores
+                            <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>{% trans "Para Vendedores" %}
                         </h6>
                         <ul class="footer-links list-unstyled">
                             <li class="mb-2">
                                 <a href="{% url 'create_store' %}" class="footer-link">
-                                    <i class="bi bi-plus-circle me-2"></i>Crear tienda
+                                    <i class="bi bi-plus-circle me-2"></i>{% trans "Crear tienda" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-graph-up me-2"></i>Vender productos
+                                    <i class="bi bi-graph-up me-2"></i>{% trans "Vender productos" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-percent me-2"></i>Comisiones
+                                    <i class="bi bi-percent me-2"></i>{% trans "Comisiones" %}
                                 </a>
                             </li>
                             <li class="mb-2">
                                 <a href="#" class="footer-link">
-                                    <i class="bi bi-book me-2"></i>Guía del vendedor
+                                    <i class="bi bi-book me-2"></i>{% trans "Guía del vendedor" %}
                                 </a>
                             </li>
                         </ul>
@@ -225,13 +237,13 @@
                 <!-- Contact Info -->
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-section">
-                        <h6 class="footer-title text-dark fw-semibold mb-3">
-                            <span class="orange_square"></span>Contacto
+                            <h6 class="footer-title text-dark fw-semibold mb-3">
+                            <span class="orange_square"></span>{% trans "Contacto" %}
                         </h6>
                         <div class="contact-info">
                             <div class="contact-item mb-3">
                                 <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-                                <small class="text-muted">Universidad EAFIT<br>Medellín, Colombia</small>
+                                <small class="text-muted">{% trans "Universidad EAFIT" %}<br>{% trans "Medellín, Colombia" %}</small>
                             </div>
                             <div class="contact-item mb-3">
                                 <i class="bi bi-envelope-fill text-primary me-2"></i>
@@ -250,15 +262,15 @@
             <hr class="my-4">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0 text-muted">
-                        &copy; 2025 UStore. Todos los derechos reservados.
+                        <p class="mb-0 text-muted">
+                        &copy; 2025 UStore. {% trans "Todos los derechos reservados." %}
                     </p>
                 </div>
                 <div class="col-md-6">
                     <div class="footer-legal text-md-end">
-                        <a href="#" class="text-muted me-3 small">Términos de servicio</a>
-                        <a href="#" class="text-muted me-3 small">Política de privacidad</a>
-                        <a href="#" class="text-muted small">Cookies</a>
+                        <a href="#" class="text-muted me-3 small">{% trans "Términos de servicio" %}</a>
+                        <a href="#" class="text-muted me-3 small">{% trans "Política de privacidad" %}</a>
+                        <a href="#" class="text-muted small">{% trans "Cookies" %}</a>
                     </div>
                 </div>
             </div>

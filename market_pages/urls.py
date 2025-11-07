@@ -4,8 +4,11 @@ from .views.CartView import view_cart, add_to_cart, remove_from_cart, clear_cart
 from .views import CartView
 from .views.SearchView import search_products
 from .views import LandingView, CreateStore, AdminStore
+from .views.ProductAPIView import ProductAPIView
+from .views.external import UrbanLoomProductsView
 from .views.createProductView import CreateProductView
 from .views.favoritesView import toggle_favorite, favorite_list
+from .views.PaymentView import PaymentView, PaymentSuccessView
 
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -16,8 +19,16 @@ urlpatterns = [
     path("search/", search_products, name="search_products"),
     path('create-store/', CreateStore.as_view(), name='create_store'),
     path('admin-store/', AdminStore.as_view(), name='admin_store'),
+    # API REST endpoints
+    path('api/products/', ProductAPIView.products_api, name='api_products'),
+    path('api/products/<int:product_id>/', ProductAPIView.product_detail_api, name='api_product_detail'),
+    # Productos externos patrocinados
+    path('products/sponsored/', UrbanLoomProductsView.as_view(), name='external_products'),
     path('create-product/', CreateProductView.as_view(), name='create-product'),
     path('favorites/<int:product_id>/toggle/', toggle_favorite, name='toggle_favorite'),
     path('favorites/', favorite_list, name='favorite_list'),
+    # Pago
+    path('payment/', PaymentView.as_view(), name='payment'),
+    path('payment/success/', PaymentSuccessView.as_view(), name='payment_success'),
 ]
 

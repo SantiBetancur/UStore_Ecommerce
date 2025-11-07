@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %} {{ page_title }}{% endblock %}
 
@@ -12,9 +12,9 @@
                 <h1 class="cart-title mb-2">
                     
                     <i class="bi bi-cart3" style="color: #e4783a;"></i>
-                    Mi Carrito
+                    {% trans "Mi Carrito" %}
                 </h1>
-                <p class="cart-subtitle text-muted">Revisa y gestiona los productos en tu carrito</p>
+                <p class="cart-subtitle text-muted">{% trans "Revisa y gestiona los productos en tu carrito" %}</p>
             </div>
         </div>
     </div>
@@ -33,19 +33,19 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col" class="border-0">
-                                          <span class="orange_square"></span>Producto
+                                          <span class="orange_square"></span>{% trans "Producto" %}
                                         </th>
                                         <th scope="col" class="text-center border-0">
-                                            <span class="orange_square"></span>Cantidad
+                                            <span class="orange_square"></span>{% trans "Cantidad" %}
                                         </th>
                                         <th scope="col" class="text-center border-0">
-                                            <span class="orange_square"></span>Precio Unit.
+                                            <span class="orange_square"></span>{% trans "Precio Unit." %}
                                         </th>
                                         <th scope="col" class="text-center border-0">
-                                            <span class="orange_square"></span>Subtotal
+                                            <span class="orange_square"></span>{% trans "Subtotal" %}
                                         </th>
                                         <th scope="col" class="text-center border-0">
-                                            <span class="orange_square"></span>Acciones
+                                            <span class="orange_square"></span>{% trans "Acciones" %}
                                         </th>
                                     </tr>
                                 </thead>
@@ -84,9 +84,9 @@
                                             <strong class="text-primary fs-5">${{ item.subtotal|floatformat:0 }}</strong>
                                         </td>
                                         <td class="text-center border-0">
-                                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-outline-danger btn-sm">
-                                                <i class="bi bi-trash me-1"></i>Eliminar
-                                            </a>
+                                                <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-outline-danger btn-sm">
+                                                    <i class="bi bi-trash me-1"></i>{% trans "Eliminar" %}
+                                                </a>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -100,41 +100,41 @@
                         <div class="col-md-8">
                             <div class="cart-actions">
                                 <a href="{% url 'clear_cart' %}" class="btn btn-outline-danger me-2">
-                                    <i class="bi bi-trash me-1"></i>Vaciar carrito
+                                    <i class="bi bi-trash me-1"></i>{% trans "Vaciar carrito" %}
                                 </a>
                                 <a href="{% url 'landing' %}" class="btn btn-outline-primary">
-                                    <i class="bi bi-arrow-left me-1"></i>Seguir comprando
+                                    <i class="bi bi-arrow-left me-1"></i>{% trans "Seguir comprando" %}
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="cart-total-card bg-light rounded-3 p-4 border-0">
                                 <div class="total-header mb-3">
-                                    <h5 class="text-dark fw-semibold mb-0">
-                                        <i class="bi bi-receipt me-2"></i>Resumen del pedido
+                                        <h5 class="text-dark fw-semibold mb-0">
+                                        <i class="bi bi-receipt me-2"></i>{% trans "Resumen del pedido" %}
                                     </h5>
                                 </div>
                                 <div class="total-details">
                                     <div class="d-flex justify-content-between mb-2">
-                                        <span class="text-muted">Subtotal:</span>
+                                        <span class="text-muted">{% trans "Subtotal:" %}</span>
                                         <span class="fw-semibold">${{ cart.total|floatformat:0 }}</span>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
-                                        <span class="text-muted">Envío:</span>
+                                        <span class="text-muted">{% trans "Envío:" %}</span>
                                         <span class="text-success fw-semibold">
-                                            <i class="bi bi-check-circle me-1"></i>Gratis
+                                            <i class="bi bi-check-circle me-1"></i>{% trans "Gratis" %}
                                         </span>
                                     </div>
                                     <hr class="my-3">
                                     <div class="d-flex justify-content-between total-final">
-                                        <strong class="fs-5 text-dark">Total:</strong>
+                                        <strong class="fs-5 text-dark">{% trans "Total:" %}</strong>
                                         <strong class="fs-4 text-primary">${{ cart.total|floatformat:0 }}</strong>
                                     </div>
                                 </div>
                                 <div class="checkout-action mt-4">
-                                    <button class="btn btn-primary btn-lg w-100 rounded-3">
-                                        <i class="bi bi-credit-card me-2"></i>Proceder al pago
-                                    </button>
+                                    <a href="{% url 'payment' %}" class="btn btn-primary btn-lg w-100 rounded-3">
+                                        <i class="bi bi-credit-card me-2"></i>{% trans "Proceder al pago" %}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -146,12 +146,12 @@
                         <div class="empty-cart-icon mb-4">
                             <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
                         </div>
-                        <h3 class="empty-cart-title text-dark fw-semibold mb-3">Tu carrito está vacío</h3>
+                        <h3 class="empty-cart-title text-dark fw-semibold mb-3">{% trans "Tu carrito está vacío" %}</h3>
                         <p class="empty-cart-text text-muted mb-4 fs-5">
-                            No tienes productos en tu carrito. ¡Explora nuestros productos y agrega algunos!
+                            {% trans "No tienes productos en tu carrito. ¡Explora nuestros productos y agrega algunos!" %}
                         </p>
                         <a href="{% url 'landing' %}" class="btn btn-primary btn-lg rounded-3">
-                            <i class="bi bi-shop me-2"></i>Ver productos
+                            <i class="bi bi-shop me-2"></i>{% trans "Ver productos" %}
                         </a>
                     </div>
                 {% endif %}

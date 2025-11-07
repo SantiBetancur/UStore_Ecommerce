@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %} {{ page_title }}{% endblock %}
+
+{% block main %}
+    <!-- Main Content -->    
+    <div class="categories-container">
+        <div class="sub-header">
+            <h1>{% trans "Productos" %} <span style="color: #24346c; font-weight:bold">{% trans "Patrocinados" %}</span> {% trans "por UrbanLoom" %}</h1>
+        </div>
+        <nav class="categories-nav">
+            <p><span class="orange_square"></span>{% trans "Productos destacados" %}</p>
+            <a href="{% url 'landing' %}">← {% trans "Volver a productos locales" %}</a>
+        </nav>
+    </div>
+    
+    <!-- Mensaje de error si existe -->
+    {% if error_message %}
+    <div class="container-fluid px-4 mt-4">
+        <div class="alert alert-warning" role="alert">
+            <strong>{% trans "Advertencia:" %}</strong> {{ error_message }}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Productos Patrocinados -->
+    {% if success and products %}
+    <div class="sub-header">
+        <h2>{% trans "Productos disponibles" %} ({{ count }})</h2>
+    </div>
+    
+    <div class="container-fluid px-4">
+        <div class="row g-4 justify-content-center">
+            {% for product in products %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                <div class="product-card position-relative" style="box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);">
+                    <!-- Badge de patrocinado -->
+                    <div class="position-absolute top-0 end-0 m-2">
+                        <span class="badge bg-warning text-dark">{% trans "Patrocinado" %}</span>
+                    </div>
+                    
+                    <!-- Imagen del producto -->
+                    {% if product.image %}
+                        <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image" style="width: 100%; height: 200px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" alt="{{ product.name }}" class="product-image">
+                    {% endif %}
+                    
+                    <div class="product-content">
+                        <div class="product-date-badge" style="color:#ffffff ; font-size: 12px; font-weight:bold;">
+                            <span class="orange_square"></span>
+                            {% if product.created_at %}
+                                {% trans "Disponible" %}
+                            {% else %}
+                                {% trans "Disponible ahora" %}
+                            {% endif %}
+                        </div>
+                        <h3 class="product-tittle">{{ product.name }}</h3>
+                        <p class="product-category">
+                            {{ product.category }}
+                            {% if product.collection %}
+                                - {{ product.collection }}
+                            {% endif %}
+                        </p>
+                        <p class="product-description">{{ product.description|truncatewords:15 }}</p>
+                        
+                        <!-- Stock disponible -->
+                        {% if product.stock %}
+                        <p class="text-muted small mb-2">
+                            <i class="bi bi-box"></i> {% trans "Stock:" %} {{ product.stock }} {% trans "unidades" %}
+                        </p>
+                        {% endif %}
+                        
+                        <!-- Footer con precio -->
+                        <div class="product-footer d-flex justify-content-between align-items-center">
+                            <div class="product-price">
+                                <span class="price-amount">${{ product.price|floatformat:0 }}</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm px-2 py-1" style="font-size: 0.75rem;" disabled>
+                                    <i class="bi bi-cart-plus"></i> {% trans "Externo" %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% elif success and not products %}
+    <div class="container-fluid px-4 mt-4">
+        <div class="alert alert-info" role="alert">
+            <strong>{% trans "Info:" %}</strong> {% trans "No hay productos patrocinados disponibles en este momento." %}
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+

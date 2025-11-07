@@ -1,2 +1,9 @@
 # UStore_Ecommerce
 
+UStore es una plataforma de comercio electrónico diseñada para emprendedores eafitenses, cuyo objetivo principal es facilitar la venta y compra de productos y servicios de manera intuitiva, segura y eficiente. Este proyecto se desarrolla en Django y sigue un enfoque MVT (Model-View-Template), integrando tanto funcionalidades propias del marketplace como servicios externos para mejorar la experiencia del usuario.
+
+La plataforma permite a los usuarios registrarse y autenticarse, incluso mediante proveedores externos como Google, crear y administrar su propia tienda, agregar y gestionar productos, navegar por el catálogo, realizar búsquedas y aplicar filtros, así como gestionar el carrito de compras y efectuar pagos mediante un simulador que permite probar transacciones sin riesgos. Además, se implementa soporte multilenguaje, asegurando que la interfaz pueda ser utilizada en español e inglés, y se mantienen consistencia visual y estructura coherente en todas las vistas y formularios.
+
+El proyecto también incorpora servicios web en formato JSON para permitir la integración y consumo de información entre diferentes equipos o aplicaciones externas, promoviendo interoperabilidad y expansión futura del sistema. Para facilitar la replicación del entorno de desarrollo y producción, se utiliza Docker, garantizando un despliegue estable y reproducible. Complementariamente, se implementaron pruebas unitarias básicas para asegurar la correcta funcionalidad de componentes críticos y se emplearon buenas prácticas de ingeniería de software, incluyendo control de versiones mediante GitHub.
+
+En conjunto, UStore ofrece una solución robusta, escalable y centrada en el usuario, que no solo cumple con las historias de usuario planteadas sino que también establece una base sólida para mejoras y ampliaciones futuras.

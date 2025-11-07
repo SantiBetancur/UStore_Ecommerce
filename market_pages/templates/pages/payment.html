@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %} {{ page_title }}{% endblock %}
+
+{% block main %}
+<div class="payment-container py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Header -->
+                <div class="payment-header text-center mb-4">
+                    <h1 class="payment-title">
+                        <i class="bi bi-credit-card-2-front me-2" style="color: #e4783a;"></i>
+                        {% trans "Procesar Pago" %}
+                    </h1>
+                    <p class="text-muted">{% trans "Confirma los detalles de tu pedido antes de proceder" %}</p>
+                </div>
+
+                <!-- Resumen del pedido -->
+                <div class="card payment-summary-card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-receipt me-2"></i>
+                            {% trans "Resumen del Pedido" %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Productos -->
+                        <div class="order-items mb-4">
+                            <h6 class="fw-bold mb-3">{% trans "Productos:" %}</h6>
+                            {% for item in cart.items.all %}
+                            <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
+                                <div class="item-info">
+                                    <h6 class="mb-1">{{ item.product.name }}</h6>
+                                    <small class="text-muted">
+                                        {% trans "Cantidad:" %} {{ item.quantity }} × ${{ item.product.price|floatformat:0 }}
+                                    </small>
+                                </div>
+                                <div class="item-total">
+                                    <strong>${{ item.subtotal|floatformat:0 }}</strong>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Totales -->
+                        <div class="order-totals">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">{% trans "Subtotal:" %}</span>
+                                <span class="fw-semibold">${{ cart.total|floatformat:0 }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">{% trans "Envío:" %}</span>
+                                <span class="text-success fw-semibold">
+                                    <i class="bi bi-check-circle me-1"></i>{% trans "Gratis" %}
+                                </span>
+                            </div>
+                            <hr class="my-3">
+                            <div class="d-flex justify-content-between">
+                                <strong class="fs-5">{% trans "Total:" %}</strong>
+                                <strong class="fs-4 text-primary">${{ total|floatformat:0 }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de pago -->
+                <div class="card payment-info-card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="bi bi-info-circle me-2"></i>
+                            {% trans "Información de Pago" %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info mb-0">
+                            <i class="bi bi-exclamation-circle me-2"></i>
+                            <strong>{% trans "Nota:" %}</strong>
+                            {% trans "Este es un sistema de pago simulado. No se realizará ningún cargo real." %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario de pago -->
+                <form method="post" action="{% url 'payment' %}" class="payment-form">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                        <a href="{% url 'view_cart' %}" class="btn btn-outline-secondary btn-lg">
+                            <i class="bi bi-arrow-left me-2"></i>{% trans "Volver al carrito" %}
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg flex-md-grow-1">
+                            <i class="bi bi-check-circle me-2"></i>
+                            {% trans "Confirmar y Pagar" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.payment-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 80vh;
+}
+
+.payment-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #24346c;
+}
+
+.payment-summary-card,
+.payment-info-card {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.order-items .item-info h6 {
+    color: #24346c;
+    font-weight: 600;
+}
+
+.payment-form .btn-primary {
+    background: linear-gradient(135deg, #24346c 0%, #e4783a 100%);
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+}
+
+.payment-form .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(36, 52, 108, 0.3);
+}
+</style>
+{% endblock %}
+
