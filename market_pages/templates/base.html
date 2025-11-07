@@ -61,6 +61,11 @@
                 </div>
                 {% endif %}
                 {% if user.is_authenticated %}
+                    <a href="{% url 'favorite_list' %}" class="login-link btn btn-outline-primary me-2" style="border-color: #24346c; color: #24346c;">
+                        Favoritos
+                    </a>
+                {% endif %}
+                {% if user.is_authenticated %}
                 <div class="user-actions">
                     <a href="{% url 'view_cart' %}" class="cart-link">
                         <i class="bi bi-cart"></i>
