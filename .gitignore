@@ -1,9 +1,10 @@
+# Cache de Python
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
-
+*.pyc
 *.env
-
 # Archivos temporales
 *.pot
 *.pyc
@@ -13,3 +14,7 @@ __pycache__/
 *.swo
 *.bak
 *.tmp
+*.sqlite3
+db.sqlite3
+media*/
+media/products/*

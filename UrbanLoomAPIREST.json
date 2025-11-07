@@ -1,0 +1,86 @@
+{
+    "success": true,
+    "count": 4,
+    "products": [
+      {
+        "id": 2,
+        "name": "Pantaloneta Azul",
+        "description": "La mejor pantaloneta talla S para niños",
+        "price": 10000,
+        "stock": 100,
+        "is_active": true,
+        "created_at": "2025-09-12T03:32:06.579762+00:00",
+        "image": "http://127.0.0.1:8000/media/products/Bomb_man_oversize_shirt_T6EX6hO.png",
+        "category": {
+          "id": 2,
+          "name": "PANTALONETAS",
+          "status": "available"
+        },
+        "collection": {
+          "id": 2,
+          "name": "VERANO",
+          "season": "SS21",
+          "status": "AVAILABLE"
+        }
+      },
+      {
+        "id": 3,
+        "name": "Pantaloneta Verde",
+        "description": "La mejor",
+        "price": 15000,
+        "stock": 100,
+        "is_active": true,
+        "created_at": "2025-09-12T03:33:23.564550+00:00",
+        "image": "http://127.0.0.1:8000/media/products/Benjamin_Franklin_Oversize.png",
+        "category": {
+          "id": 2,
+          "name": "PANTALONETAS",
+          "status": "available"
+        },
+        "collection": {
+          "id": 2,
+          "name": "VERANO",
+          "season": "SS21",
+          "status": "AVAILABLE"
+        }
+      },
+      {
+        "id": 4,
+        "name": "Buzo cuero",
+        "description": "Buzo de cuero puro",
+        "price": 500000,
+        "stock": 4,
+        "is_active": true,
+        "created_at": "2025-09-12T03:34:51.635610+00:00",
+        "image": "http://127.0.0.1:8000/media/products/Camera_Man_Oversize.png",
+        "category": {
+          "id": 3,
+          "name": "BUZOS",
+          "status": "available"
+        },
+        "collection": {
+          "id": 3,
+          "name": "CALLE",
+          "season": "SS22",
+          "status": "AVAILABLE"
+        }
+      },
+      {
+        "id": 5,
+        "name": "Buzo de piel",
+        "description": "La mejor piel del mercado",
+        "price": 250000,
+        "stock": 10,
+        "is_active": true,
+        "created_at": "2025-09-12T03:38:43.044904+00:00",
+        "image": "http://127.0.0.1:8000/media/products/Box_Cat_Oversize.png",
+        "category": {
+          "id": 3,
+          "name": "BUZOS",
+          "status": "available"
+        },
+        "collection": null
+      }
+    ]
+  }
+  
