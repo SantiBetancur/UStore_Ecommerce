@@ -1,7 +1,7 @@
 {% extends 'layouts/baseUsers.html' %}
 
 {% block content %}
-{% load static %}
+{% load static i18n %}
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center position-relative">
     <!-- Logo en esquina superior izquierda -->
     <a href="{% url 'landing' %}" class="position-absolute top-0 start-0 m-3">
@@ -21,17 +21,17 @@
             </svg>
         </div>
 
-        <h2 class="mb-3">Iniciar sesión con Google</h2>
-        <p class="mb-4">Vas a iniciar sesión usando tu cuenta de Google.</p>
+    <h2 class="mb-3">{% trans "Iniciar sesión con Google" %}</h2>
+    <p class="mb-4">{% trans "Vas a iniciar sesión usando tu cuenta de Google." %}</p>
 
         <form method="post" action="{{ request.path }}">
             {% csrf_token %}
             <div class="d-flex gap-2 justify-content-center">
                 <a href="{% url 'landing' %}" class="btn btn-outline-secondary" style="min-width: 120px;">
-                    Atrás
+                    {% trans "Atrás" %}
                 </a>
                 <button type="submit" class="btn btn-primary" style="background-color: #24346c; min-width: 120px;">
-                    Continuar
+                    {% trans "Continuar" %}
                 </button>
             </div>
         </form>

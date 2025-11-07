@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %} {{ page_title }}{% endblock %}
 
@@ -8,8 +8,8 @@
 <div class="categories-container">
     <div class="sub-header">
         <h1>
-            Encuentra productos y servicios de emprendedores 
-            <span class="highlight">Eafitenses</span>
+            {% trans "Encuentra productos y servicios de emprendedores" %} 
+            <span class="highlight">{% trans "Eafitenses" %}</span>
         </h1>
     </div>
 
@@ -35,14 +35,14 @@
                     {% if product.image %}
                         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
                     {% else %}
-                        <img src="https://images.unsplash.com/photo-1606813902771-3c10fdf4b4f6?auto=format&fit=crop&w=600&q=60" 
+                        <img src="{% static 'images/default.png' %}	" 
                              alt="{{ product.name }}" class="product-img">
                     {% endif %}
 
                     <div class="product-content">
                         <div class="product-date-badge">
                             <span class="orange_square"></span>
-                            publicado {{ product.created_at|date:"M d" }}
+                            {% trans "publicado" %} {{ product.created_at|date:"M d" }}
                         </div>
                         <h3 class="product-tittle">{{ product.name }}</h3>
                         <p class="product-category">{{ product.category }}</p>
@@ -56,7 +56,7 @@
                             <div class="product-actions">
                                 <a href="{% url 'add_to_cart' product.id %}" 
                                    class="btn btn-primary btn-sm add-to-cart-btn">
-                                    <i class="bi bi-cart-plus"></i> Agregar
+                                    <i class="bi bi-cart-plus"></i> {% trans "Agregar" %}
                                 </a>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
             </div>
             {% endfor %}
         {% else %}
-            <p class="text-center text-muted mt-4">No hay productos disponibles en este momento.</p>
+            <p class="text-center text-muted mt-4">{% trans "No hay productos disponibles en este momento." %}</p>
         {% endif %}
     </div>
 </div>
@@ -78,11 +78,11 @@
         {# Botón "Anterior" #}
         {% if products.has_previous %}
             <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">Anterior</a>
+                <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">{% trans "Anterior" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <span class="page-link pagination-btn">Anterior</span>
+                <span class="page-link pagination-btn">{% trans "Anterior" %}</span>
             </li>
         {% endif %}
 
@@ -114,7 +114,7 @@
         {% endfor %}
 
         {# Mostrar puntos y última página si corresponde #}
-        {% if products.number < products.paginator.num_pages|add:-2 %}
+            {% if products.number < products.paginator.num_pages|add:-2 %}
             {% if products.number < products.paginator.num_pages|add:-3 %}
                 <li class="page-item disabled">
                     <span class="page-link pagination-btn">…</span>
@@ -130,11 +130,11 @@
         {# Botón "Siguiente" #}
         {% if products.has_next %}
             <li class="page-item">
-                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">Siguiente</a>
+                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">{% trans "Siguiente" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <span class="page-link pagination-btn">Siguiente</span>
+                <span class="page-link pagination-btn">{% trans "Siguiente" %}</span>
             </li>
         {% endif %}
     </ul>
