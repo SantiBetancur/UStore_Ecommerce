@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head %} 
-    <link rel="stylesheet" href="{% static 'css/store.css' %}">>
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -13,7 +13,7 @@
             <p class="text-muted">Configura la información básica de tu tienda en UStore EAFIT</p>
         </div>
     
-        <form method="POST" enctype="{{ request.path }}">
+    <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="card store-profile-card mb-5">
                 <div class="store-header-bg-custom">
@@ -25,6 +25,9 @@
                                     <label for="store_name" class="form-label text-primary fw-bold fs-5">Nombre de la Tienda*</label>
                                     <input type="text" class="form-control form-control-lg" id="store_name" name="store_name" 
                                            placeholder="Ingresa el nombre de tu tienda" required style="font-size: 1.5rem; font-weight: 700;">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error }}</div>
+                                    {% endif %}
                                 </div>
                                 
                                 <!-- Descripción -->

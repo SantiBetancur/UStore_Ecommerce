@@ -46,18 +46,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ["name"]
 
     def create_store(self, name, description, logo):
+        from market_pages.models import Store  # asegúrate de importar dentro de la función para evitar importaciones circulares
+
+
         if self.has_store:
-            raise ValueError("User already has a store.")
-        
+            return {"error": "User already has a store."}
+
+        if Store.objects.filter(name=name).exists():
+            return {"error": "Store with this name already exists."}
+
+ 
         store = Store.objects.create(
             name=name,
             description=description,
             logo=logo if logo else None,
         )
+
+
         self.store = store
         self.has_store = True
-        self.save()
-        return store
+        self.save(update_fields=["store", "has_store"])
 
-    def __str__(self):
-        return self.email
+        return store
