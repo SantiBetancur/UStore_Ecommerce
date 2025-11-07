@@ -176,3 +176,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configuración de APIs externas
 URBANLOOM_API_URL = 'http://127.0.0.1:8000/catalog/api/products/'
 URBANLOOM_API_TIMEOUT = 10  # Timeout en segundos para peticiones a UrbanLoom
+
+# Configuración de procesadores de pago
+PAYMENT_PROCESSOR = 'simulated'  # Opciones: 'simulated', 'stripe', 'paypal', etc.
+SIMULATED_PAYMENT_SUCCESS_RATE = 0.80  # Probabilidad de éxito del pago simulado (0.0 a 1.0)
