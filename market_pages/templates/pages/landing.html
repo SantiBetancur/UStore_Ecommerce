@@ -3,8 +3,6 @@
 
 {% block title %} {{ page_title }}{% endblock %}
 
-
-
     {% block main %}
     <!-- Main Content -->    
         <div class="categories-container">
@@ -63,4 +61,144 @@
          </div>
         
 
+{% block main %}
+<!-- Main Content -->    
+<div class="categories-container">
+    <div class="sub-header">
+        <h1>
+            Encuentra productos y servicios de emprendedores 
+            <span class="highlight">Eafitenses</span>
+        </h1>
+    </div>
+
+    <nav class="categories-nav">
+        <p><span class="orange_square"></span>Categorías principales</p>
+        <button>Servicios Académicos</button>
+        <button>Productos electrónicos</button>
+        <button>Productos de consumo</button>
+        <button>Ropa y accesorios</button>
+    </nav>
+</div>
+
+<!-- Productos -->
+<div class="sub-header">
+    <h2>Últimas publicaciones</h2>
+</div>
+
+<div class="container-fluid px-4">
+    <div class="row g-4 justify-content-center">
+        {% if products %}
+            {% for product in products %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                <div class="product-card position-relative">
+                    
+                    <!-- Imagen del producto o imagen por defecto -->
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1606813902771-3c10fdf4b4f6?auto=format&fit=crop&w=600&q=60" 
+                             alt="{{ product.name }}" class="product-img">
+                    {% endif %}
+
+                    <div class="product-content">
+                        <div class="product-date-badge">
+                            <span class="orange_square"></span>
+                            publicado {{ product.created_at|date:"M d" }}
+                        </div>
+                        <h3 class="product-tittle">{{ product.name }}</h3>
+                        <p class="product-category">{{ product.category }}</p>
+                        <p class="product-description">{{ product.description|truncatewords:20 }}</p>
+                        
+                        <!-- Footer con precio y botón -->
+                        <div class="product-footer d-flex justify-content-between align-items-center">
+                            <div class="product-price">
+                                <span class="price-amount">${{ product.price|floatformat:0 }}</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="{% url 'add_to_cart' product.id %}" 
+                                   class="btn btn-primary btn-sm add-to-cart-btn">
+                                    <i class="bi bi-cart-plus"></i> Agregar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center text-muted mt-4">No hay productos disponibles en este momento.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Paginación profesional (bidireccional) -->
+{% if products.has_other_pages %}
+<nav aria-label="Page navigation" class="pagination-container">
+    <ul class="pagination justify-content-center">
+
+        {# Botón "Anterior" #}
+        {% if products.has_previous %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ products.previous_page_number }}">Anterior</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">Anterior</span>
+            </li>
+        {% endif %}
+
+        {# Mostrar siempre la primera página y puntos si corresponde #}
+        {% if products.number > 3 %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page=1">1</a>
+            </li>
+            {% if products.number > 4 %}
+                <li class="page-item disabled">
+                    <span class="page-link pagination-btn">…</span>
+                </li>
+            {% endif %}
+        {% endif %}
+
+        {# Mostrar páginas cercanas (ventana ±2) #}
+        {% for num in products.paginator.page_range %}
+            {% if num >= products.number|add:-2 and num <= products.number|add:2 %}
+                {% if num == products.number %}
+                    <li class="page-item active">
+                        <span class="page-link pagination-btn">{{ num }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link pagination-btn" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {# Mostrar puntos y última página si corresponde #}
+        {% if products.number < products.paginator.num_pages|add:-2 %}
+            {% if products.number < products.paginator.num_pages|add:-3 %}
+                <li class="page-item disabled">
+                    <span class="page-link pagination-btn">…</span>
+                </li>
+            {% endif %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ products.paginator.num_pages }}">
+                    {{ products.paginator.num_pages }}
+                </a>
+            </li>
+        {% endif %}
+
+        {# Botón "Siguiente" #}
+        {% if products.has_next %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ products.next_page_number }}">Siguiente</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">Siguiente</span>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}
