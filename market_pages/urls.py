@@ -7,6 +7,8 @@ from .views import LandingView, CreateStore, AdminStore
 from .views.ProductAPIView import ProductAPIView
 from .views.external import UrbanLoomProductsView
 from .views.createProductView import CreateProductView
+from .views.favoritesView import toggle_favorite, favorite_list
+from .views.PaymentView import PaymentView, PaymentSuccessView
 
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -23,5 +25,10 @@ urlpatterns = [
     # Productos externos patrocinados
     path('products/sponsored/', UrbanLoomProductsView.as_view(), name='external_products'),
     path('create-product/', CreateProductView.as_view(), name='create-product'),
+    path('favorites/<int:product_id>/toggle/', toggle_favorite, name='toggle_favorite'),
+    path('favorites/', favorite_list, name='favorite_list'),
+    # Pago
+    path('payment/', PaymentView.as_view(), name='payment'),
+    path('payment/success/', PaymentSuccessView.as_view(), name='payment_success'),
 ]
 
