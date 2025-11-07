@@ -25,4 +25,20 @@ def favorite_list(request):
     """Muestra los productos favoritos del usuario."""
     favorites = Favorite.objects.filter(user=request.user).select_related('product')
     products = [fav.product for fav in favorites]
-    return render(request, 'pages/favorites_list.html', {'products': products})
+    
+    # Obtener variables para el navbar (ya están disponibles globalmente por context processor,
+    # pero las incluimos aquí por si acaso)
+    username = request.session.get('username', '')
+    storename = request.session.get('short_storename', '') if request.session.get('short_storename', '') else "Mi tienda"
+    cart_count = request.session.get('cart_count', 0)
+    
+    context = {
+        'products': products,
+        'page_title': 'Mis Favoritos - UStore',
+        'username': username,
+        'storename': storename,
+        'cart_count': cart_count,
+        'user': request.user,
+    }
+    
+    return render(request, 'pages/favorites_list.html', context)

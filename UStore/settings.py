@@ -94,7 +94,8 @@ TEMPLATES = [
                             'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "market_pages.context_processors.cart_item_count", # Nuevo - para contador de carritos
+                "market_pages.context_processors.cart_item_count", # Para contador de carritos
+                "market_pages.context_processors.navbar_context", # Para variables del navbar (username, storename, cart_count)
                 # Debug context processor to inspect active language and related info in templates
                 'UStore.context_processors.i18n_debug',
             ],
@@ -167,6 +168,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -180,3 +182,4 @@ URBANLOOM_API_TIMEOUT = 10  # Timeout en segundos para peticiones a UrbanLoom
 # Configuración de procesadores de pago
 PAYMENT_PROCESSOR = 'simulated'  # Opciones: 'simulated', 'stripe', 'paypal', etc.
 SIMULATED_PAYMENT_SUCCESS_RATE = 0.80  # Probabilidad de éxito del pago simulado (0.0 a 1.0)
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']

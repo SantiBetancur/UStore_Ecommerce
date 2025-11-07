@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Mis favoritos{% endblock %}
+{% block title %}{% trans "Mis favoritos" %}{% endblock %}
 
 {% block main %}
 <div class="container py-4">
     <h1 class="mb-4 text-center">
-        <span class="highlight">Mis favoritos</span>
+        <span class="highlight">{% trans "Mis favoritos" %}</span>
     </h1>
 
     {% if products %}
@@ -34,7 +34,7 @@
                     <div class="product-content p-3">
                         <div class="product-date-badge mb-2 text-muted">
                             {% if product.created_at %}
-                                publicado {{ product.created_at|date:"M d, Y" }}
+                                {% trans "publicado" %} {{ product.created_at|date:"M d, Y" }}
                             {% endif %}
                         </div>
                         <h3 class="product-tittle mb-2">{{ product.name }}</h3>
@@ -48,7 +48,7 @@
                                 ${{ product.price|floatformat:0 }}
                             </div>
                             <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-sm">
-                                <i class="bi bi-cart-plus"></i> Agregar
+                                <i class="bi bi-cart-plus"></i> {% trans "Agregar" %}
                             </a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="text-center text-muted mt-5 fs-5">Aún no tienes productos en tus favoritos.</p>
+        <p class="text-center text-muted mt-5 fs-5">{% trans "Aún no tienes productos en tus favoritos." %}</p>
     {% endif %}
 </div>
 {% endblock %}
