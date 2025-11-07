@@ -4,3 +4,4 @@ pillow
 PyJWT
 django-allauth
 cryptography
+requests

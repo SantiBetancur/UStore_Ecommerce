@@ -158,3 +158,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de APIs externas
+URBANLOOM_API_URL = 'http://127.0.0.1:8000/catalog/api/products/'
+URBANLOOM_API_TIMEOUT = 10  # Timeout en segundos para peticiones a UrbanLoom

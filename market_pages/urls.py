@@ -4,6 +4,8 @@ from .views.CartView import view_cart, add_to_cart, remove_from_cart, clear_cart
 from .views import CartView
 from .views.SearchView import search_products
 from .views import LandingView, CreateStore, AdminStore
+from .views.ProductAPIView import ProductAPIView
+from .views.external import UrbanLoomProductsView
 
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -14,5 +16,10 @@ urlpatterns = [
     path("search/", search_products, name="search_products"),
     path('create-store/', CreateStore.as_view(), name='create_store'),
     path('admin-store/', AdminStore.as_view(), name='admin_store'),
+    # API REST endpoints
+    path('api/products/', ProductAPIView.products_api, name='api_products'),
+    path('api/products/<int:product_id>/', ProductAPIView.product_detail_api, name='api_product_detail'),
+    # Productos externos patrocinados
+    path('products/sponsored/', UrbanLoomProductsView.as_view(), name='external_products'),
 ]
 
