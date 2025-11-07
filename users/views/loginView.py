@@ -29,6 +29,14 @@ class LoginView(View):
 
     def get(self, request):
         data_get_render_template.pop("errors", None)
+        # Get any messages from the messages framework
+        from django.contrib import messages
+        message_errors = []
+        for message in messages.get_messages(request):
+            if message.level == messages.ERROR:
+                message_errors.append(str(message))
+        if message_errors:
+            data_get_render_template["errors"] = message_errors
         return render(request, self.template_name, data_get_render_template)
     
     def post(self, request):
